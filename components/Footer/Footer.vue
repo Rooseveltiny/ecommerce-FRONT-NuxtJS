@@ -5,28 +5,28 @@
         <div class="footer_inner">
           <div class="footer--left_col non-select">
             <div class="footer_section">
-              <router-link to="/about_company">
+              <nuxt-link to="/about_company">
                 <div class="footer_item">О компании</div>
-              </router-link>
-              <router-link to="/catalog/categories">
+              </nuxt-link>
+              <nuxt-link to="/catalog/categories">
                 <div class="footer_item">Каталог продукции</div>
-              </router-link>
+              </nuxt-link>
             </div>
             <div class="footer_section">
-              <router-link to="/contacts">
+              <nuxt-link to="/contacts">
                 <div class="footer_item">Контакты</div>
-              </router-link>
-              <router-link to="/feedback">
+              </nuxt-link>
+              <nuxt-link to="/feedback">
                 <div class="footer_item">Обратная связь</div>
-              </router-link>
+              </nuxt-link>
             </div>
             <div class="footer_section">
-              <router-link to="/faq">
+              <nuxt-link to="/faq">
                 <div class="footer_item">Частные вопросы</div>
-              </router-link>
-              <router-link to="/about_project">
+              </nuxt-link>
+              <nuxt-link to="/about_project">
                 <div class="footer_item">О проекте</div>
-              </router-link>
+              </nuxt-link>
             </div>
           </div>
           <div class="footer--right_col">

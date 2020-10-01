@@ -3,10 +3,18 @@
     <div class="filter_inner non-select">
       <div class="filter_title">Поиск по свойствам</div>
 
-      <div v-for="filter in getAllFilters" :key="filter.name" class="filter_item">
-        <div class="filter_name">{{filter.name}}</div>
+      <div
+        v-for="filter in getAllFilters"
+        :key="filter.name"
+        class="filter_item"
+      >
+        <div class="filter_name">{{ filter.name }}</div>
         <div class="filter_values_block">
-          <div v-for="(parameter, index) in filter.parameters" :key="index" class="filter_value">
+          <div
+            v-for="(parameter, index) in filter.parameters"
+            :key="index"
+            class="filter_value"
+          >
             <input
               :type="filter.input_type"
               :value="parameter"
@@ -14,14 +22,19 @@
               v-model="choosenFilterParameters"
               @change="filterProducts"
             />
-            <label :for="parameter.slug">{{parameter.title}}</label>
+            <label :for="parameter.slug">{{ parameter.title }}</label>
           </div>
         </div>
       </div>
       <div class="filter_buttons">
         <transition name="bounce">
-          <div class="filter_btn_block" v-if="getAllChoosenFilterParameters.length">
-            <span @click="clearFilter" class="filter_clear_btn">Очистить фильтр</span>
+          <div
+            class="filter_btn_block"
+            v-if="getAllChoosenFilterParameters.length"
+          >
+            <span @click="clearFilter" class="filter_clear_btn"
+              >Очистить фильтр</span
+            >
           </div>
         </transition>
       </div>
@@ -38,26 +51,35 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getAllFilters", "getAllChoosenFilterParameters"]),
+    ...mapGetters({
+      getAllFilters: "catalog/getAllFilters",
+      getAllChoosenFilterParameters: "catalog/getAllChoosenFilterParameters",
+    }),
     choosenFilterParameters: {
       get() {
         return this.$store.state.catalog.choosenFilterParameters;
       },
       set(inputValue) {
         this.mayShowFilterBtn = true;
-        this.$store.state.catalog.choosenFilterParameters = inputValue;
+        this.mutateAllChoosenFilterParameters(inputValue);
       },
     },
   },
   methods: {
-    ...mapActions(["fetchFilter", "setQueryParams", "fetchProducts"]),
-    ...mapMutations(["collectFilterValuesFromURL", "clearFilterParams"]),
+    ...mapActions({
+      fetchFilter: "catalog/fetchFilter", 
+      setQueryParams: "catalog/setQueryParams", 
+    }),
+    ...mapMutations({
+      collectFilterValuesFromURL: "catalog/collectFilterValuesFromURL", 
+      clearFilterParams: "catalog/clearFilterParams",
+      mutateAllChoosenFilterParameters: "catalog/mutateAllChoosenFilterParameters"
+      }),
     smoothScrollTop: async function () {
       window.scrollTo({ top: 0, behavior: "smooth" });
     },
     filterProducts: function () {
       this.setQueryParams();
-      this.fetchProducts();
       this.smoothScrollTop();
     },
     clearFilter: function () {
@@ -66,9 +88,9 @@ export default {
       this.smoothScrollTop();
     },
   },
-  async mounted() {
+  async fetch() {
     await this.fetchFilter();
-    this.collectFilterValuesFromURL();
+    await this.collectFilterValuesFromURL();
   },
 };
 </script>
@@ -100,9 +122,9 @@ export default {
   cursor: pointer;
 } */
 
-.filter_values_block{
-    overflow: overlay;
-    max-height: 135px;
+.filter_values_block {
+  overflow: overlay;
+  max-height: 135px;
 }
 
 .filter_btn_block {
@@ -142,18 +164,14 @@ export default {
 }
 
 @media (max-width: 990px) {
-    .filter_item{
+  .filter_item {
     font-size: 14px;
   }
 }
 
 @media (max-width: 990px) {
-    .filter_item{
+  .filter_item {
     font-size: 16px;
   }
 }
-
-
-
-
 </style>

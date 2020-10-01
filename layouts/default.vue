@@ -25,17 +25,12 @@ import { mapActions, mapMutations } from 'vuex';
 
 export default {
   name: "App",
-  components: {
-    Header,
-    Footer,
-    // CatalogStructure
-  },
   computed: {},
   methods: {
     ...mapActions(['cart/fetchCart']),
     ...mapMutations(['cart/updateCartUUID'])
   },
-  async created() {
+  async fetch() {
     // this.updateCartUUID({cart_uuid: localStorage.cart_uuid});
     await this.fetchCart;
   }
@@ -135,7 +130,7 @@ h6 {
 
 .component-fade-enter-active,
 .component-fade-leave-active {
-  transition: opacity 0.2s ease;
+  transition: opacity .2s ease;
 }
 .component-fade-enter, .component-fade-leave-to
 /* .component-fade-leave-active до версии 2.1.8 */ {

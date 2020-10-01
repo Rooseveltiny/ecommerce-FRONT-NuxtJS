@@ -1,22 +1,29 @@
 <template>
   <div>
     <template v-for="(product, index) in getProducts">
-      <div :key="index" class="catalog_item main_block_style main_block_style-less">
+      <div
+        :key="index"
+        class="catalog_item main_block_style main_block_style-less"
+      >
         <div class="product_img">
-          <template v-if="product.all_images.length">
+          <template v-show="product.all_images.length">
             <div class="img_wrapper">
-              <img onload="this.style.visibility='visible'" :src="product.all_images[0].cloud_link" alt />
+              <img
+                onload="this.style.visibility='visible'"
+                :src="product.all_images[0].cloud_link"
+                alt
+              />
             </div>
           </template>
         </div>
         <div class="product_info">
           <div class="product_title">
-            <router-link :to="{ path: `/catalog/product/${product.link}` }">
-              <div class="title">{{product.title}}</div>
-            </router-link>
+            <nuxt-link :to="{ path: `/catalog/product/${product.link}` }">
+              <div class="title">{{ product.title }}</div>
+            </nuxt-link>
             <div class="price">
-              <div class="product_price">{{product.price}} ₽/</div>
-              <div class="product_unit">{{product.unit_of_measurement}}</div>
+              <div class="product_price">{{ product.price }} ₽/</div>
+              <div class="product_unit">{{ product.unit_of_measurement }}</div>
             </div>
           </div>
           <div class="product_characteristic">
@@ -24,18 +31,22 @@
               v-for="(detail, index) in product.detail"
               :key="index"
               class="product_characteristic_item"
-            >{{detail}}</div>
+            >
+              {{ detail }}
+            </div>
           </div>
           <div class="product_info_inner">
             <div class="balance">
               На складе
               <div class="balance_style">
-                <div class="product_balance">{{product.balance}}</div>
-                <div class="product_unit">{{product.unit_of_measurement}}</div>
+                <div class="product_balance">{{ product.balance }}</div>
+                <div class="product_unit">
+                  {{ product.unit_of_measurement }}
+                </div>
               </div>
-              <hint-component :hintContent="balanceHint" iconWidthHeight="15px"/>
+              <!-- <hint-component :hintContent="balanceHint" iconWidthHeight="15px"/> -->
             </div>
-            <addToCartBtn :productLink="product.link" />
+            <!-- <addToCartBtn :productLink="product.link" /> -->
           </div>
         </div>
       </div>
@@ -45,26 +56,26 @@
 
 <script>
 import { mapActions, mapGetters, mapMutations } from "vuex";
-import addToCartBtn from '../Cart/AddToCartBtn'
+// import addToCartBtn from "../Cart/AddToCartBtn";
 
 export default {
-  components: {addToCartBtn},
-  data(){
+  data() {
     return {
-      balanceHint: 'Сколько товара в данный момент лежит на складе'
-    }
+      balanceHint: "Сколько товара в данный момент лежит на складе",
+    };
   },
   methods: {
-    ...mapMutations(["changeCurrentPage"]),
-    ...mapActions(["fetchProducts", "fetchFilter"]),
+    ...mapActions({
+      fetchProducts: "catalog/fetchProducts",
+    }),
   },
   watch: {
-    $route: ["fetchProducts", "fetchFilter"],
+    "$route.query": "$fetch",
   },
-  mounted() {
-    this.fetchProducts();
+  async fetch() {
+    await this.fetchProducts();
   },
-  computed: { ...mapGetters(["getProducts"]) },
+  computed: { ...mapGetters({ getProducts: "catalog/getProducts" }) },
 };
 </script>
 
@@ -80,7 +91,7 @@ export default {
   font-weight: bold;
 }
 
-.product_img{
+.product_img {
   width: 120px;
   height: 100px;
   display: flex;
@@ -165,15 +176,13 @@ export default {
   background-color: #ffe373 !important;
 }
 
-@media (max-width: 990px){
-  .product_characteristic{
+@media (max-width: 990px) {
+  .product_characteristic {
     font-size: 12px;
   }
 
-  .product_info_inner{
+  .product_info_inner {
     padding-top: 10px;
   }
 }
-
-
 </style>

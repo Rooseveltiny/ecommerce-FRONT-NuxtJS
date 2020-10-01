@@ -1,18 +1,17 @@
-// import router from '../../router/router'
 import ApiSettings from './ApiSettings'
 
 export default {
     actions: {
         async fetchProducts({ commit }) {
             commit('updateShowCatalogBlock', true);
-            const categoryAndQueryParams = this.app.router.currentRoute.fullPath;
+            const categoryAndQueryParams = this.$router.currentRoute.fullPath;
             const res = await fetch(`${ApiSettings.BASE_ROUTE}${categoryAndQueryParams}`);
             const products = await res.json();
             commit('updateProducts', products);
             commit('updateShowCatalogBlock', false);
         },
         async fetchFilter({ commit }) {
-            const res = await fetch(`${ApiSettings.BASE_ROUTE}/products/filter/${router.currentRoute.params.slug}`);
+            const res = await fetch(`${ApiSettings.BASE_ROUTE}/products/filter/${this.$router.currentRoute.params.slug}`);
             const filter = await res.json();
             commit('updateFilter', filter);
         },
@@ -36,15 +35,18 @@ export default {
             }
             queryObj['sort_field'] = getters.getCurrentSortingType.sort_field;
             queryObj['page'] = 1;
-            router.replace({ query: queryObj }).catch(() => { });
+            this.$router.replace({ query: queryObj }).catch(() => { });
         }
     },
     mutations: {
+        mutateAllChoosenFilterParameters(state, inputValue) {
+            state.choosenFilterParameters = inputValue;
+        },
         updateSortingCatalog(state, sorting) {
             state.sorting.currentSorting = sorting;
         },
         updateSortingFromURL(state) {
-            let sortFieldFromURL = router.currentRoute.query.sort_field;
+            let sortFieldFromURL = this.$router.currentRoute.query.sort_field;
             let sortingType = state.sorting.sortingTypes.find(value => {
                 return value.sort_field == sortFieldFromURL;
             })
@@ -54,6 +56,10 @@ export default {
         },
         updateProducts(state, products) {
             state.products.productsList = products.results;
+            let pag = products;
+            if (pag.next) { pag.next = pag.next.replace(ApiSettings.BASE_ROUTE, '') }
+            if (pag.previous) { pag.previous = pag.previous.replace(ApiSettings.BASE_ROUTE, '') }
+            if (pag.page_links) { pag.page_links.map(value => { value.link = value.link.replace(ApiSettings.BASE_ROUTE, '') }); }
             state.products.productsPagination = products;
         },
         updateShowCatalogBlock(state, show) {
@@ -63,7 +69,7 @@ export default {
             state.categories = categories;
             state.currentCategory = categories[0]
         },
-        closeCatalogStructure(state){
+        closeCatalogStructure(state) {
             state.CatalogStructureVisible = false;
         },
         openCloseCatalogStructureGeneral(state) {
@@ -76,7 +82,7 @@ export default {
             state.filters = filter;
         },
         collectFilterValuesFromURL(state) {
-            let allValuesFromURL = router.currentRoute.query;
+            let allValuesFromURL = this.$router.currentRoute.query;
             delete allValuesFromURL.page;
             delete allValuesFromURL.sort_field;
 
@@ -183,11 +189,7 @@ export default {
             return state.categories;
         },
         getPagination(state) {
-            let pag = state.products.productsPagination;
-            if (pag.next) { pag.next = pag.next.replace(ApiSettings.BASE_ROUTE, '') }
-            if (pag.previous) { pag.previous = pag.previous.replace(ApiSettings.BASE_ROUTE, '') }
-            if (pag.page_links) { pag.page_links.map(value => { value.link = value.link.replace(ApiSettings.BASE_ROUTE, '') }); }
-            return pag;
+            return state.products.productsPagination;
         },
         getProductsCount(state) {
             return state.products.productsPagination.count;

@@ -7,7 +7,6 @@
           @click="$router.push(getPagination.previous).catch(()=>{}); smoothScrollTop()"
           class="pag_arrow pag_item left"
         ></div>
-
         <div
           v-for="(pagItem, index) in getPagination.page_links"
           :key="index"
@@ -30,21 +29,19 @@
 import { mapActions, mapGetters } from "vuex";
 export default {
   methods: {
-    ...mapActions(["setQueryParams"]),
+    ...mapActions({setQueryParams: "catalog/setQueryParams"}),
     smoothScrollTop: async function () {
       window.scrollTo({ top: 0, behavior: "smooth" });
     },
   },
   computed: {
-    ...mapGetters(["getPagination"]),
+    ...mapGetters({getPagination: "catalog/getPagination"}),
   },
 };
 </script>
 
 <style scoped>
-.pagination {
-}
-
+  
 .pagination_inner {
   display: flex;
   margin: 0 auto;

@@ -1,27 +1,32 @@
 <template>
   <div class="sorting_inner non-select">
-
     <div class="found_block">
       <span>Найдено товаров:&nbsp;</span>
-      <span class="found">{{getProductsCount}}</span>
+      <span class="found">{{ getProductsCount }}</span>
     </div>
     <div class="sorting_block">
-    <span>Сортировать:&nbsp;</span>
-    <span
-      @click="showAllSortings"
-      class="currentSorting"
-      style="cursor: pointer"
-    >{{getCurrentSortingType.name}}</span>
-    <transition name="bounce">
-    <div v-show="showSortingsBlock" class="main_block_style main_block_style-less sorting_list">
-      <div
-        v-for="sorting in getAllSortingTypes"
-        :key="sorting.name"
-        class="sorting_item non-select"
-        @click="updateSorting(sorting)"
-      >{{sorting.name}}</div>
-    </div>
-    </transition>
+      <span>Сортировать:&nbsp;</span>
+      <span
+        @click="showAllSortings"
+        class="currentSorting"
+        style="cursor: pointer"
+        >{{ getCurrentSortingType.name }}</span
+      >
+      <transition name="bounce">
+        <div
+          v-show="showSortingsBlock"
+          class="main_block_style main_block_style-less sorting_list"
+        >
+          <div
+            v-for="sorting in getAllSortingTypes"
+            :key="sorting.name"
+            class="sorting_item non-select"
+            @click="updateSorting(sorting)"
+          >
+            {{ sorting.name }}
+          </div>
+        </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -31,41 +36,45 @@ import { mapGetters, mapMutations, mapActions } from "vuex";
 export default {
   data() {
     return {
-      showSortingsBlock: false
+      showSortingsBlock: false,
     };
   },
   computed: {
-    ...mapGetters(["getCurrentSortingType", "getAllSortingTypes", "getProductsCount"])
+    ...mapGetters({
+      getCurrentSortingType: "catalog/getCurrentSortingType",
+      getAllSortingTypes: "catalog/getAllSortingTypes",
+      getProductsCount: "catalog/getProductsCount",
+    }),
   },
   methods: {
-    ...mapActions(["setQueryParams"]),
-    ...mapMutations(["updateSortingCatalog", "updateSortingFromURL"]),
+    ...mapActions({ setQueryParams: "catalog/setQueryParams" }),
+    ...mapMutations({
+      updateSortingCatalog: "catalog/updateSortingCatalog",
+      updateSortingFromURL: "catalog/updateSortingFromURL",
+    }),
     showAllSortings() {
       this.showSortingsBlock = !this.showSortingsBlock;
     },
-    updateSorting(sorting){
-        this.updateSortingCatalog(sorting);
-        this.showSortingsBlock = false;
-        this.setQueryParams();
-    }
+    updateSorting(sorting) {
+      this.updateSortingCatalog(sorting);
+      this.showSortingsBlock = false;
+      this.setQueryParams();
+    },
   },
-  mounted(){
+  mounted() {
     this.updateSortingFromURL();
   },
-  watch: {}
+  watch: {},
 };
 </script>
 
 <style>
-
-
-
-.found{
+.found {
   color: #0d61af;
   border-bottom: 1px dotted;
 }
 
-.found_block{
+.found_block {
 }
 
 .sorting_list {
@@ -100,5 +109,4 @@ export default {
   color: #0d61af;
   border-bottom: 1px dotted;
 }
-
 </style>

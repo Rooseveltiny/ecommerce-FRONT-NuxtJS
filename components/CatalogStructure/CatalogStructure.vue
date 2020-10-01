@@ -42,7 +42,8 @@
             <div class="catalog_sub_category_title">{{sub_cat.title}}</div>
             <template v-for="(sub_cat_item, index) in sub_cat.children">
               <div :key="index" class="sub_cat_item">
-                <router-link :to="{name: 'Catalog', params: {slug: sub_cat_item.slug}}">
+                <!-- <router-link :to="{name: 'Catalog', params: {slug: sub_cat_item.slug}}"> -->
+                <router-link :to="`/products/category/${sub_cat_item.slug}`">
                   <span @click="clearFilterParams(); closeCatalogStructureDetaily()">{{sub_cat_item.title}}</span>
                 </router-link>
               </div>
