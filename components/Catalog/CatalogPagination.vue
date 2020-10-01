@@ -4,7 +4,7 @@
       <div class="pagination_inner">
         <div
           v-show="getPagination.previous"
-          @click="$router.push(getPagination.previous).catch(()=>{}); smoothScrollTop()"
+          @click="paginate(getPagination.previous); smoothScrollTop()"
           class="pag_arrow pag_item left"
         ></div>
         <div
@@ -12,12 +12,12 @@
           :key="index"
           class="pag_item"
           :class="{current_page: pagItem.is_active}"
-          @click="$router.push(pagItem.link).catch(()=>{}); smoothScrollTop()"
+          @click="paginate(pagItem.link); smoothScrollTop()"
         >{{pagItem.number}}</div>
 
         <div
           v-show="getPagination.next"
-          @click="$router.push(getPagination.next).catch(()=>{}); smoothScrollTop()"
+          @click="paginate(getPagination.next); smoothScrollTop()"
           class="pag_arrow pag_item right"
         ></div>
       </div>
@@ -30,9 +30,12 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   methods: {
     ...mapActions({setQueryParams: "catalog/setQueryParams"}),
-    smoothScrollTop: async function () {
+    smoothScrollTop: async function () {  
       window.scrollTo({ top: 0, behavior: "smooth" });
     },
+    paginate(url){
+      new Promise(()=>{this.$router.push(url)}).catch(()=>{});
+    }
   },
   computed: {
     ...mapGetters({getPagination: "catalog/getPagination"}),

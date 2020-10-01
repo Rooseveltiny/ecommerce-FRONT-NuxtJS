@@ -73,9 +73,9 @@ export default {
   color: #0d61af;
   border-bottom: 1px dotted;
 }
-
+/* 
 .found_block {
-}
+} */
 
 .sorting_list {
   display: grid;

@@ -1,10 +1,9 @@
-// import router from '../../router/router'
 import ApiSettings from './ApiSettings';
 
 export default {
     actions: {
         async fetchProduct({ commit }){
-            const res = await fetch(`${ApiSettings.BASE_ROUTE}/product/${router.currentRoute.params.uuid}`);
+            const res = await fetch(`${ApiSettings.BASE_ROUTE}/product/${this.$router.currentRoute.params.uuid}`);
             const product = await res.json();
             commit('updateCurrentProduct', product);
         }

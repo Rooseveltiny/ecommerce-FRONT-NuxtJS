@@ -23,9 +23,9 @@
             <div class="search_results_title">Продукция</div>
             <div class="search_results_items">
               <template v-for="(result, index) in getSearchResult.products">
-                <router-link :key="index" :to="{path: `/catalog/product/${result.link}`}">
+                <nuxt-link :key="index" :to="{path: `/catalog/product/${result.link}`}">
                   <div class="search_result_item" id="searchElementItem21321">{{result.title}}</div>
-                </router-link>
+                </nuxt-link>
               </template>
             </div>
           </div>
@@ -33,9 +33,9 @@
             <div class="search_results_title">Категории</div>
             <div class="search_results_items">
               <template v-for="(result, index) in getSearchResult.categories">
-                <router-link :key="index" :to="{name: 'Catalog', params: {slug: result.slug}}">
+                <nuxt-link no-prefetch :key="index" :to="`/products/category/${result.slug}`">
                   <div class="search_result_item" id="searchElementItem21321">{{result.title}}</div>
-                </router-link>
+                </nuxt-link>
               </template>
             </div>
           </div>

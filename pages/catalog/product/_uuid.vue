@@ -25,19 +25,19 @@
 </template>
 
 <script>
-import ProductInfo from "./ProductInfo";
-import Product from "./Product";
+import ProductInfo from "@/components/Product/ProductInfo";
+import Product from "@/components/Product/Product";
 import { mapActions, mapGetters } from "vuex";
+
 export default {
-  components: { ProductInfo, Product },
   computed: {
-    ...mapGetters(["product"]),
+    ...mapGetters({product: "product/product"}),
   },
   methods: {
-    ...mapActions(["fetchProduct"]),
+    ...mapActions({fetchProduct: "product/fetchProduct"}),
   },
-  async mounted() {
-    this.fetchProduct();
+  async fetch() {
+    await this.fetchProduct();
   },
 };
 </script>

@@ -1,20 +1,32 @@
 <template>
   <div class="product">
     <div class="product_image" style="width: 300px; height: 300px">
-      <Slider animation="normal" :autoplay="false">
-        <SliderItem v-for="(img, index) in product.all_images" :key="index">
-          <img width="300" height="300" :src="img.cloud_link" alt />
-        </SliderItem>
-      </Slider>
+        <template>
+          <Hooper animation="normal" infiniteScroll="true" wheelControl="false">
+            <Slide v-for="(img, index) in product.all_images" :key="index">
+              <img width="300" height="300" :src="img.cloud_link" alt />
+            </Slide>
+            <Hooper-pagination
+              slot="hooper-addons"
+              mode="fraction"
+            ></Hooper-pagination>
+          </Hooper>
+        </template>
     </div>
     <div class="product_info">
       <div class="product_info_inner">
-        <div class="product_price">{{product.price}} ₽/{{product.unit_of_measurement}}</div>
+        <div class="product_price">
+          {{ product.price }} ₽/{{ product.unit_of_measurement }}
+        </div>
         <div class="characteristic"></div>
-        <div
-          class="balance"
-        >Остаток на складе: {{product.balance}}&nbsp;{{product.unit_of_measurement}}
-        <hint-component hintContent="Столько товара сейчас лежит на складе)" marginLeft="10px"/>
+        <div class="balance">
+          Остаток на складе: {{ product.balance }}&nbsp;{{
+            product.unit_of_measurement
+          }}
+          <hint-component
+            hintContent="Столько товара сейчас лежит на складе)"
+            marginLeft="10px"
+          />
         </div>
         <div class="characteristic"></div>
       </div>
@@ -27,32 +39,40 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import { Slider, SliderItem } from "vue-easy-slider";
+import { Hooper, Slide, Pagination as HooperPagination } from "hooper";
+import 'hooper/dist/hooper.css';
 
 export default {
-  components: {
-    Slider,
-    SliderItem,
-  },
-  methods: {
-    ...mapActions(["fetchProduct"]),
-  },
+  components: {Hooper, Slide, HooperPagination},
+  methods: {},
   computed: {
-    ...mapGetters(["product"]),
+    ...mapGetters({ product: "product/product" }),
   },
-  mounted() {
-    this.fetchProduct();
-  },
-  watch: {
-    $route: ["fetchProduct"],
-  },
+  async fetch() {},
+  watch: {},
 };
 </script>
 
 <style scoped>
+
+.hooper{
+  height: auto;
+}
+
+.hooper:focus{
+  outline: none;
+  user-select: none;
+}
+
+.hooper-pagination{
+  background: #fff;
+    border-radius: 7px;
+}
+
 .product {
   display: flex;
 }
+
 
 .product_info {
   padding: 0 50px;
@@ -73,8 +93,6 @@ export default {
   align-items: center;
 }
 
-.product_info_inner {
-}
 
 .buy_btn {
   background-color: #fc0;

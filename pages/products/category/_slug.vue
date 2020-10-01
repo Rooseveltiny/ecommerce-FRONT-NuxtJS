@@ -37,7 +37,7 @@
                 <CatalogPagination />
               </div>
             </template>
-            <div v-if="!getProducts.length" class="main_block_style">
+            <div v-show="!getProducts.length" class="main_block_style">
               <b>По вышему запросу ничего не найдено :(</b>
             </div>
           </div>
