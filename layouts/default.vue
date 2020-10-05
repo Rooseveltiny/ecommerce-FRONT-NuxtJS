@@ -1,5 +1,6 @@
 <template>
     <div class="page">
+      <H1 class="seo_display">Сайт компании Всё для кровли. ИП Трифаненков. ООО ВДК-СТРОЙ г. Череповец</H1>
       <Header />
       <div class="content">
         <div class="container">
@@ -38,6 +39,23 @@ export default {
 </script>
 
 <style>
+
+/* SEO */
+.seo_display{
+  display: none;
+}
+
+/* HOOPER SETTINGS */
+
+.hooper {
+  height: auto !important;
+}
+
+.hooper:focus {
+  outline: none  !important;
+  user-select: none  !important;
+}
+
 
 /* CUSTOM CLASS FOR SIMPLERT */
 .simplert{

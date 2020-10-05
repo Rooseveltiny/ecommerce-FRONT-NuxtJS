@@ -29,7 +29,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["addToCart"]),
+    ...mapActions({addToCart: "cart/addToCart"}),
     async addToCartFunc(data){
       this.showLoading = true
       await this.addToCart(data).catch(()=>{

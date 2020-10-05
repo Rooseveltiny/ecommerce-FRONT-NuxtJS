@@ -46,7 +46,7 @@
             <client-only>
             <Search />
             </client-only>
-            <nuxt-link to="cart">
+            <nuxt-link to="/cart">
             <div
               class="cart_icon"
               :class="{'cart_icon-empty': !getCartProducts.length, 'cart_icon-full': getCartProducts.length}"
@@ -67,9 +67,6 @@ import Search from '../Generals/Search'
 
 
 export default {
-  components: {
-    Search,
-  },
   methods: {
     ...mapMutations({openCloseCatalogStructureGeneral :'catalog/openCloseCatalogStructureGeneral'}),
     showCatalogStructureComponentMethod: function () {

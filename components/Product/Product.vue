@@ -1,17 +1,15 @@
 <template>
   <div class="product">
     <div class="product_image" style="width: 300px; height: 300px">
-        <template>
-          <Hooper animation="normal" infiniteScroll="true" wheelControl="false">
-            <Slide v-for="(img, index) in product.all_images" :key="index">
-              <img width="300" height="300" :src="img.cloud_link" alt />
-            </Slide>
-            <Hooper-pagination
-              slot="hooper-addons"
-              mode="fraction"
-            ></Hooper-pagination>
-          </Hooper>
-        </template>
+      <template>
+        <Hooper animation="normal" :infiniteScroll="true" :wheelControl="false">
+          <Slide v-for="(img, index) in product.all_images" :key="index">
+            <img width="300" height="300" :src="img.cloud_link" alt />
+          </Slide>
+          <HooperNavigation slot="hooper-addons"></HooperNavigation>
+          <Hooper-pagination slot="hooper-addons"></Hooper-pagination>
+        </Hooper>
+      </template>
     </div>
     <div class="product_info">
       <div class="product_info_inner">
@@ -39,11 +37,16 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import { Hooper, Slide, Pagination as HooperPagination } from "hooper";
-import 'hooper/dist/hooper.css';
+import {
+  Hooper,
+  Slide,
+  Pagination as HooperPagination,
+  Navigation as HooperNavigation,
+} from "hooper";
+import "hooper/dist/hooper.css";
 
 export default {
-  components: {Hooper, Slide, HooperPagination},
+  components: { Hooper, Slide, HooperPagination, HooperNavigation },
   methods: {},
   computed: {
     ...mapGetters({ product: "product/product" }),
@@ -55,24 +58,10 @@ export default {
 
 <style scoped>
 
-.hooper{
-  height: auto;
-}
-
-.hooper:focus{
-  outline: none;
-  user-select: none;
-}
-
-.hooper-pagination{
-  background: #fff;
-    border-radius: 7px;
-}
 
 .product {
   display: flex;
 }
-
 
 .product_info {
   padding: 0 50px;
@@ -92,7 +81,6 @@ export default {
   justify-content: center;
   align-items: center;
 }
-
 
 .buy_btn {
   background-color: #fc0;

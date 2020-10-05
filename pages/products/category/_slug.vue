@@ -1,5 +1,6 @@
 <template>
   <div class="catalog_main">
+    <H1 class="seo_display">Металлическая кровля по минимальным ценам в городе Череповец</H1>
     <div class="container">
       <div class="catalog_inner">
         <!-- <div class="navigation main_block_style main_block_style-less" style="margin-bottom: 0"> -->
@@ -57,10 +58,27 @@ import CatalogFilter from "@/components/Catalog/CatalogFilter";
 import { mapGetters } from "vuex";
 
 export default {
+  head() {
+    return {
+      title: `Профнастил, металлочерепица в Череповце. Покупайте со скидкой в интернет-магазине Всё для кровли`,
+      meta: [
+        {
+          name: "description",
+          hid: "description",
+          content: `
+          Покупайте профнастил, металлический сайдинг от компании производителя Всё для кровли.
+          Приобретайте в интернет-магазине Всё для кровли по минимальной цене.
+          `,
+        },
+      ],
+    };
+  },
+  methods:{},
   computed: {
     ...mapGetters({
       catalogLoadingBlock: "catalog/catalogLoadingBlock",
       getProducts: "catalog/getProducts",
+      currentCategory: "catalog/getCurrentCategory"
     }),
   },
 };

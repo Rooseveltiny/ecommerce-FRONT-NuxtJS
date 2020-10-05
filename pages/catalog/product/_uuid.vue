@@ -1,19 +1,25 @@
 <template>
   <div class="extra_container">
-    <div  @click="$router.go(-1)"  class="get_back_block">
+    <H1 class="seo_display">{{ getH1 }}</H1>
+    <div @click="$router.go(-1)" class="get_back_block">
       <div class="get_back_block_inner">назад</div>
     </div>
     <div class="container">
       <div class="title_main">
         <div>
-          <div class="title">{{product.title}}</div>
-          <div class="article">Код продукта: {{product.product_code}}</div>
+          <div class="title">{{ product.title }}</div>
+          <div class="article">Код продукта: {{ product.product_code }}</div>
         </div>
         <div @click="$router.go(-1)" class="get_back">
-          <div class="get_back_label main_block_style main_block_style-less">Вернуться назад</div>
+          <div class="get_back_label main_block_style main_block_style-less">
+            Вернуться назад
+          </div>
         </div>
       </div>
-      <div class="product main_block_style main_block_style-less" style="margin-bottom: 0">
+      <div
+        class="product main_block_style main_block_style-less"
+        style="margin-bottom: 0"
+      >
         <Product />
       </div>
       <div class="product_info">
@@ -30,11 +36,27 @@ import Product from "@/components/Product/Product";
 import { mapActions, mapGetters } from "vuex";
 
 export default {
+  head() {
+    return {
+      title: `${this.product.title} в Череповце. Купить в интернет-магазине Всё для кровли`,
+      meta: [
+        {
+          name: "description",
+          hid: "description",
+          content: `
+          Заказывайте ${this.product.title} от компании производителя Всё для кровли.
+          Приобретайте ${this.product.category_title} в интернет-магазине с доставкой и гарантией.
+          `,
+        },
+      ],
+    };
+  },
   computed: {
-    ...mapGetters({product: "product/product"}),
+    getH1() {return `${this.product.title} ${this.product.details_in_row}`},
+    ...mapGetters({ product: "product/product" }),
   },
   methods: {
-    ...mapActions({fetchProduct: "product/fetchProduct"}),
+    ...mapActions({ fetchProduct: "product/fetchProduct" }),
   },
   async fetch() {
     await this.fetchProduct();
@@ -43,7 +65,6 @@ export default {
 </script>
 
 <style scoped>
-
 .title {
   font-size: 25px;
   color: #666;

@@ -46,7 +46,7 @@
               </div>
               <!-- <hint-component :hintContent="balanceHint" iconWidthHeight="15px"/> -->
             </div>
-            <!-- <addToCartBtn :productLink="product.link" /> -->
+            <addToCartBtn :productLink="product.link" />
           </div>
         </div>
       </div>
@@ -56,9 +56,12 @@
 
 <script>
 import { mapActions, mapGetters, mapMutations } from "vuex";
-// import addToCartBtn from "../Cart/AddToCartBtn";
+import addToCartBtn from "@/components/Cart/AddToCartBtn";
 
 export default {
+  components: {
+    addToCartBtn
+  },
   data() {
     return {
       balanceHint: "Сколько товара в данный момент лежит на складе",

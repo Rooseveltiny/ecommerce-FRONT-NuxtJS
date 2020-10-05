@@ -1,11 +1,11 @@
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: 'ecommerce-vdk',
+    title: 'Всё для кровли | Интернет-магазин',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      { hid: 'description', name: 'description', content: 'Профнастил, металлочерепица, металлический сайдинг, грядки, евроштакетник в интернет-магазине Всё для кровли. улица Краснодонцев 5.' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
