@@ -54,8 +54,8 @@
 </template>
 
 <script>
-// import ApiSettings from "../../store/ApiSettings";
 import ApiSettings from "../store/ApiSettings"
+import { mapActions } from 'vuex'
 
 export default {
   data() {
@@ -77,7 +77,9 @@ export default {
     },
   },
   methods: {
+    ...mapActions({testAxios: 'user/testAxios'}),
     async sendForm() {
+      this.testAxios();
       let body = JSON.stringify(this.form);
       let server = `${ApiSettings.BASE_ROUTE}/feedback_form`;
       let response = await fetch(server, { body: body, method: "POST", headers: {"Content-type": "application/json"} });

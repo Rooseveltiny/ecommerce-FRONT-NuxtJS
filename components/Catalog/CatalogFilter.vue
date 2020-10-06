@@ -68,7 +68,7 @@ export default {
   methods: {
     ...mapActions({
       fetchFilter: "catalog/fetchFilter", 
-      setQueryParams: "catalog/setQueryParams", 
+      setQueryParams: "catalog/setQueryParams",
     }),
     ...mapMutations({
       collectFilterValuesFromURL: "catalog/collectFilterValuesFromURL", 

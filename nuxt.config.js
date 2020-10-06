@@ -20,6 +20,7 @@ export default {
   plugins: [
     '~plugins/vue-notifications',
     '~plugins/hooper',
+    '~plugins/api_ecommerce_vdk'
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -31,10 +32,20 @@ export default {
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
+    '@nuxtjs/axios',
   ],
+
+  axios: {
+    proxyHeader: false
+  },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
     transpile: ['vue-notifications']
   },
+
+  server: {
+    // port: 8000, // default: 3000
+    // host: '0.0.0.0' // default: localhost
+  }
 }
