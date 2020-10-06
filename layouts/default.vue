@@ -1,47 +1,50 @@
 <template>
-    <div class="page">
-      <H1 class="seo_display">Сайт компании Всё для кровли. ИП Трифаненков. ООО ВДК-СТРОЙ г. Череповец</H1>
-      <Header />
-      <div class="content">
-        <div class="container">
-          <CatalogStructure />
-        </div>
-        <transition name="component-fade" mode="out-in">
-          <Nuxt />
-        </transition>
+  <div class="page">
+    <H1 class="seo_display"
+      >Сайт компании Всё для кровли. ИП Трифаненков. ООО ВДК-СТРОЙ г.
+      Череповец</H1
+    >
+    <Header />
+    <div class="content">
+      <div class="container">
+        <CatalogStructure />
       </div>
-      <div class="footer">
-        <Footer />
-      </div>
+      <transition name="component-fade" mode="out-in">
+        <Nuxt />
+      </transition>
     </div>
-    <!-- <notifications group="notifications" position="bottom right" :max="4" /> -->
-    <!-- <simplert :useRadius="false" /> -->
+    <div class="footer">
+      <Footer />
+    </div>
+    <client-only>
+      <notifications group="login" position="bottom right" />
+    </client-only>
+  </div>
 </template>
 
 <script>
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import CatalogStructure from "../components/CatalogStructure/CatalogStructure";
-import { mapActions, mapMutations } from 'vuex';
+import { mapActions, mapMutations } from "vuex";
 
 export default {
   name: "App",
   computed: {},
   methods: {
-    ...mapActions(['cart/fetchCart']),
-    ...mapMutations(['cart/updateCartUUID'])
+    ...mapActions({setToken: 'user/setToken'})
   },
-  async fetch() {
-    // this.updateCartUUID({cart_uuid: localStorage.cart_uuid});
-    await this.fetchCart;
-  }
+  async mounted() {
+    await this.setToken();
+  },
 };
 </script>
+
 
 <style>
 
 /* SEO */
-.seo_display{
+.seo_display {
   display: none;
 }
 
@@ -52,19 +55,18 @@ export default {
 }
 
 .hooper:focus {
-  outline: none  !important;
-  user-select: none  !important;
+  outline: none !important;
+  user-select: none !important;
 }
 
-
 /* CUSTOM CLASS FOR SIMPLERT */
-.simplert{
+.simplert {
   z-index: 10000 !important;
 }
 
-.disabled{
-    pointer-events: none;
-    opacity: 0.4;
+.disabled {
+  pointer-events: none;
+  opacity: 0.4;
 }
 
 /* slider settings */
@@ -108,7 +110,8 @@ a:active {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Arial", "PT Sans", "Helvetica", "Arial", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Arial", "PT Sans",
+    "Helvetica", "Arial", sans-serif;
   font-size: 15px;
   color: #333;
   line-height: 1.6;
@@ -148,7 +151,7 @@ h6 {
 
 .component-fade-enter-active,
 .component-fade-leave-active {
-  transition: opacity .2s ease;
+  transition: opacity 0.2s ease;
 }
 .component-fade-enter, .component-fade-leave-to
 /* .component-fade-leave-active до версии 2.1.8 */ {
@@ -208,10 +211,16 @@ h6 {
   margin-right: 15px;
 }
 
-.global_shadow{
+.global_shadow {
   -webkit-box-shadow: 0px 0px 0px 3000px rgba(0, 0, 0, 0.38);
   -moz-box-shadow: 0px 0px 0px 3000px rgba(0, 0, 0, 0.38);
   box-shadow: 0px 0px 0px 3000px rgba(0, 0, 0, 0.38);
+}
+
+.global_border_shadow{
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
 }
 
 .non-select {
@@ -313,8 +322,7 @@ h6 {
 
 /* GET BACK BUTTON END */
 
-.section{
+.section {
   margin-top: 25px;
 }
-
 </style>

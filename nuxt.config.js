@@ -18,7 +18,7 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
-    '~plugins/vue-notifications',
+    {src: '~plugins/vue-notifications', ssr: false},
     '~plugins/hooper',
     '~plugins/api_ecommerce_vdk'
   ],
@@ -32,7 +32,7 @@ export default {
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
-    '@nuxtjs/axios',
+    '@nuxtjs/axios'
   ],
 
   axios: {
@@ -41,7 +41,6 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
-    transpile: ['vue-notifications']
   },
 
   server: {

@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import VueNotifications from 'vue-notifications'
+import Notification from 'vue-notification'
 
 if (process.client) {
-  Vue.use(VueNotifications)
+  Vue.use(Notification)
 }

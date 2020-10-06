@@ -15,7 +15,7 @@
                   <span class="nav_link">Обратная связь</span>
                 </nuxt-link>
               </div>
-              <div class="nav-right-part">Вход/Регистрация</div>
+              <div class="nav-right-part"><UserHeader /></div>
             </div>
           </nav>
         </div>
@@ -64,7 +64,7 @@
 <script>
 import { mapMutations, mapGetters } from "vuex";
 import Search from '../Generals/Search'
-
+import UserHeader from '@/components/User/UserHeader'
 
 export default {
   methods: {
