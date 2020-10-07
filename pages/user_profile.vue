@@ -6,25 +6,19 @@
           <template v-for="(link, index) in allLinks">
             <div
               :key="index"
-              @click="currentLink = link"
+              @click="currentCompontent = link"
               class="side_link_item"
-              :class="{ active: link == currentLink }"
+              :class="{ active: link.title == currentCompontent.title }"
             >
-              {{ link }}
+              {{ link.title }}
             </div>
           </template>
         </div>
         <div class="profile_data main_block_style main_block_style-less">
-                <div class="profile_title">{{currentLink}}</div>
-          <div v-if="currentLink == 'Пользователь'" class="profile_data_inner">
-            <div class="profile_user_data">
-              <template v-for="(data, index) in userData">
-                <div :key="index" class="profile_data_item">
-                  {{ data }}
-                </div>
-              </template>
-            </div>
-          </div>
+          <div class="profile_title">{{ currentCompontent.title }}</div>
+          <component v-bind:is="currentCompontent.component">{{
+            currentCompontent.title
+          }}</component>
         </div>
       </div>
     </div>
@@ -33,19 +27,23 @@
 
 <script>
 import { mapGetters } from "vuex";
+import ProfileData from "@/components/User/ProfileData";
+import ChangePassword from "@/components/User/ChangePassword";
+
 export default {
   data() {
     return {
-      currentLink: "Пользователь",
-      allLinks: ["Пользователь", "Сменить пароль"],
+      currentCompontent: { title: "Профиль", component: ProfileData },
+      allLinks: [
+        {
+          title: "Профиль",
+          component: ProfileData,
+        },
+        { title: "Изменить пароль", component: ChangePassword },
+      ],
     };
   },
-  computed: {
-    ...mapGetters({ user: "user/getUserData" }),
-    userData() {
-      return Object.values(this.user);
-    },
-  },
+  computed: {},
 };
 </script>
 
@@ -62,6 +60,7 @@ export default {
 
 .profile_data {
   width: 80%;
+  padding-left: 30px;
 }
 
 .side_link_item {
@@ -97,10 +96,9 @@ export default {
   padding: 0 5px;
 }
 
-.profile_title{
-    margin: 0 0 10px 5px;
-    font-weight: bold;
-    font-size: 20px;
+.profile_title {
+  margin: 0 0 10px 0;
+  font-weight: bold;
+  font-size: 20px;
 }
-
 </style>

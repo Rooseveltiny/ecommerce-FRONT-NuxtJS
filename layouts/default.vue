@@ -43,6 +43,14 @@ export default {
 
 <style>
 
+.form_btn {
+  height: 35px;
+  background: #fc0;
+  border: none;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
 /* SEO */
 .seo_display {
   display: none;

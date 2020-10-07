@@ -18,13 +18,14 @@
                 id="email"
               />
               <label class="input_label" for="password"
-                ><span>Пароль</span></label
+                >Пароль<div @click="showHidePassword()" class="btn_show_hide_pass" :class="{opened: passwordType=='text'}"></div
+              ></label
               >
               <input
                 v-model="loginData.password"
                 required
                 class="input_field"
-                type="password"
+                :type="passwordType"
                 id="password"
               />
               <button class="form_btn">Войти</button>
@@ -70,12 +71,15 @@
                 type="email"
                 id="email"
               />
-              <label class="input_label" for="password">Пароль</label>
+              <label class="input_label" for="password"
+                >Пароль
+                <div @click="showHidePassword()" class="btn_show_hide_pass" :class="{opened: passwordType=='text'}"></div
+              ></label>
               <input
                 v-model="regData.password"
                 required
                 class="input_field"
-                type="password"
+                :type="passwordType"
                 id="password"
               />
               <label class="input_label" for="password">Повторите пароль</label>
@@ -83,7 +87,7 @@
                 v-model="regData.re_password"
                 required
                 class="input_field"
-                type="password"
+                :type="passwordType"
                 id="password"
               />
               <button class="form_btn">Регистрация</button>
@@ -91,9 +95,15 @@
             <span class="type_btn" @click="setCurrentType('login')">Войти</span>
           </template>
           <template v-else-if="currentType == 'restore'">
-            <form v-on:submit.prevent="regUserForm()" class="input_block">
+            <form v-on:submit.prevent="restorePassForm()" class="input_block">
               <label class="input_label" for="email">Электронная почта</label>
-              <input required class="input_field" type="email" id="email" />
+              <input
+                v-model="restoreData.email"
+                required
+                class="input_field"
+                type="email"
+                id="email"
+              />
               <button class="form_btn">Восстановить пароль</button>
             </form>
             <span class="type_btn" @click="setCurrentType('login')">Войти</span>
@@ -120,6 +130,7 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
+      passwordType: "password",
       message_block: {
         show: false,
         message_text: "",
@@ -165,6 +176,7 @@ export default {
       regUser: "user/regUser",
       login: "user/login",
       setToken: "user/setToken",
+      restorePass: "user/restorePass",
     }),
     async regUserForm() {
       let resp = await this.regUser(this.regDataComputed);
@@ -186,9 +198,13 @@ export default {
         await this.setToken();
         this.$router.go(-1);
         this.$notify(
-            { type: "success", group: "login", title: `Вы успешно авторизовались!` },
-            4000
-          );
+          {
+            type: "success",
+            group: "login",
+            title: `Вы успешно авторизовались!`,
+          },
+          4000
+        );
       } else if (resp.status == 304) {
         this.$notify(
           { type: "success", group: "login", title: `Вы уже в системе!` },
@@ -203,8 +219,49 @@ export default {
         }
       }
     },
+    async restorePassForm() {
+      await this.restorePass(this.restoreData).then((resp) => {
+        if (resp.status === 200) {
+          this.$notify(
+            {
+              type: "success",
+              group: "login",
+              title: `Новый пароль отправлен на почту. Теперь вы можете осуществить вход!`,
+            },
+            4000
+          );
+          this.currentType = "login";
+        } else if (resp.status === 404) {
+          this.$notify(
+            {
+              type: "error",
+              group: "login",
+              title: `Почта ${this.restoreData.email} отсутствует в системе!`,
+              text: "Пожалуйста, укажите другую почту",
+            },
+            4000
+          );
+        } else {
+          this.$notify(
+            {
+              type: "error",
+              group: "login",
+              title: `В ходе восстановления пароля возникла ошибка`,
+            },
+            4000
+          );
+        }
+      });
+    },
     enter() {
       this.$router.go("/login");
+    },
+    showHidePassword() {
+      if (this.passwordType == "password") {
+        this.passwordType = "text";
+      } else {
+        this.passwordType = "password";
+      }
     },
   },
 };
@@ -238,6 +295,7 @@ export default {
 .input_label {
   color: #999;
   font-size: 13px;
+  position: relative;
 }
 
 .input_block {
@@ -256,14 +314,6 @@ export default {
   border-right: none;
 }
 
-.form_btn {
-  height: 35px;
-  background: #fc0;
-  border: none;
-  margin-top: 5px;
-  cursor: pointer;
-}
-
 .type_btn {
   color: #666;
   margin-top: 20px;
@@ -272,5 +322,25 @@ export default {
   margin: 10px auto 0 auto;
   font-size: 12px;
   cursor: pointer;
+}
+
+.btn_show_hide_pass {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 6px;
+  top: 113%;
+  background: url(https://e-commerce-vdk.s3.eu-central-1.amazonaws.com/pics/closed-eyes-with-lashes-and-brows.svg)
+    no-repeat;
+  background-size: 70%;
+  background-position: center center;
+}
+
+.opened.btn_show_hide_pass{
+  background: url(https://e-commerce-vdk.s3.eu-central-1.amazonaws.com/pics/eye-outline-variant-with-lashes-and-enlarged-pupil.svg)
+    no-repeat;
+    background-size: 70%;
+  background-position: center center;
 }
 </style>

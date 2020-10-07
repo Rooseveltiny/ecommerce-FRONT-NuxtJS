@@ -41,6 +41,13 @@ export default {
                     localStorage.setItem('accessToken', '');
                  });
             }
+        },
+        async restorePass(_, restoreData){
+            return await this.$api_ecommerce_auth.post('email/change', restoreData).then(response=>{
+                return response;
+            }).catch((error)=>{
+                return error.response;
+            });
         }
     },
     mutations: {

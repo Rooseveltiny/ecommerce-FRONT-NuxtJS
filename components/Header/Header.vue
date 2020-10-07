@@ -98,14 +98,20 @@ export default {
 }
 
 .nav-left-part {
-  min-width: 35%;
-  display: flex;
-  justify-content: space-around;
+      min-width: 35%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 13px;
 }
 
 .nav-right-part {
   width: 30%;
   text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 13px;
 }
 
 /* BOTTOM HEADER */
