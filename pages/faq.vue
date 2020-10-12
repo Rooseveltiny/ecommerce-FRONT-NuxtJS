@@ -1,15 +1,26 @@
 <template>
-  <div class="container">
-    <div class="main_title">Частые вопросы</div>
-    <div class="questions_block">
-      <div class="q_item" v-for="(q, index) in questions" :key="index">
-        <div
-          class="q_title non-select main_block_style"
-          :class="{active: current_question == index}"
-          @click="setCurrent(index)"
-        >{{q.question}}</div>
-          <div class="q_answer" :class="{active: index==current_question}">
-            {{q.answer}}
+  <div>
+    <div class="container">
+      <div class="main_title">Частые вопросы</div>
+      <div class="faq_main">
+        <div class="faq_inner">
+          <div class="faq_left_side_bar main_block_style main_block_style-less">
+            <div class="faq_categories_title">Вопросы</div>
+            <template v-for="(item, index) in faqItems">
+              <div
+                class="faq_category_item"
+                :class="{ active: item == currentFaq }"
+                @click="changeCurrentCategory(item)"
+                :key="index"
+              >
+                {{ item.title }}
+              </div>
+            </template>
+          </div>
+          <div class="faq_content main_block_style main_block_style-less">
+            <div class="faq_content_title">{{ currentFaq.title }}</div>
+            {{ currentFaq.content }}
+          </div>
         </div>
       </div>
     </div>
@@ -18,103 +29,81 @@
 
 <script>
 export default {
-  data() {
+  methods: {
+    changeCurrentCategory(cat) {
+      this.currentFaq = cat;
+    },
+  },
+  asyncData() {
     return {
-      questions: [
+      faqItems: [
         {
-          question: "Доставка по вологодской области",
-          answer:
-            "зкушпозуопзыкопзщышуопзщшыуопзшыкопзшщыуыушпоыузщшопзыущшопзыущопзышопзыушопзщкшуопзщшукопзщшуопзшщыуо",
+          title: "Доставка по России",
+          content:
+            "Доставка по России осуществляется различными транспортными компаниями",
         },
         {
-          question: "Способы оплаты",
-          answer:
-            "зкушпозуопзыкопзщышуопзщшыуопзшыкопзшщыуыушпоыузщшопзыущшопзыущопзышопзыушопзщкшуопзщшукопзщшуопзшщыуозкушпозуопзыкопзщышуопзщшыуопзшыкопзшщыуыушпоыузщшопзыущшопзыущопзышопзыушопзщкшуопзщшукопзщшуопзшщыуо",
+          title: "Доставка по Вологодской области",
+          content:
+            "Отправляем личным траснпортом, либо привлекаем газели местных транспортных компаний",
         },
         {
-          question: "Производство",
-          answer:
-            "зкушпозуопзыкопзщышуопзщшыуопзшыкопзшщыуыушпоыузщшопзыущшопзыущопзышопзыушопзщкшуопзщшукопзщшуопзшщыуозкушпозуопзыкопзщышуопзщшыуопзшыкопзшщыуыушпоыузщшопзыущшопзыущопзышопзыушопзщкшуопзщшукопзщшуопзшщыуо",
-        },
-        {
-          question: "Доставка по России",
-          answer:
-            "зкушпозуопзыкопзщышуопзщшыуопзшыкопзшщыуыушпоыузщшопзыущшопзыущопзышопзыушопзщкшуопзщшукопзщшуопзшщыуозкушпозуопзыкопзщышуопзщшыуопзшыкопзшщыуыушпоыузщшопзыущшопзыущопзышопзыушопзщкшуопзщшукопзщшуопзшщыуозкушпозуопзыкопзщышуопзщшыуопзшыкопзшщыуыушпоыузщшопзыущшопзыущопзышопзыушопзщкшуопзщшукопзщшуопзшщыуозкушпозуопзыкопзщышуопзщшыуопзшыкопзшщыуыушпоыузщшопзыущшопзыущопзышопзыушопзщкшуопзщшукопзщшуопзшщыуозкушпозуопзыкопзщышуопзщшыуопзшыкопзшщыуыушпоыузщшопзыущшопзыущопзышопзыушопзщкшуопзщшукопзщшуопзшщыуо",
+          title: "Способы оплаты",
+          content:
+            "Оплатить заказы можно переводом на карту, по безналу, либо наличными",
         },
       ],
-      current_question: undefined,
+      currentFaq: undefined,
     };
   },
-  methods: {
-    setCurrent(index) {
-      if (index == this.current_question) {
-        this.current_question = undefined;
-      } else {
-        this.current_question = index;
-      }
-    },
+  created() {
+    if (this.faqItems.length) {
+      this.currentFaq = this.faqItems[0];
+    }
   },
 };
 </script>
 
 <style scoped>
-.q_item {
-  width: 60%;
-  text-align: left;
+.faq_inner {
   display: flex;
-  margin: 0 auto;
-  display: block;
-  font-size: 21px;
 }
 
-.q_title {
-  padding: 10px 20px;
-  margin: 5px 0;
+.faq_left_side_bar {
+  width: 25%;
+  margin-right: 15px;
+  height: 100%;
+}
+
+.faq_content {
+  width: 75%;
+}
+
+.faq_content_title {
+  color: black;
+  font-size: 20px;
   font-weight: bold;
-  color: #666;
-  width: 100%;
-  position: relative;
-  cursor: pointer;
 }
 
-.q_title::after {
-  content: "";
-  border-top: 2px solid #666;
-  border-left: 2px solid #666;
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  top: 40%;
-  left: 95%;
+.faq_category_item {
+  font-size: 15px;
   cursor: pointer;
   transition-duration: 0.5s;
-  transform: rotate(-225deg);
+  padding: 5px 10px 5px 0;
 }
 
-.q_title.active:after {
-  transform: rotate(-135deg);
+.faq_categories_title {
+  font-size: 20px;
+  font-weight: bold;
 }
 
-.q_title.active{
-    background-color: rgb(255, 249, 195);
+.faq_category_item:hover {
+  background: #ffe373;
+  padding-left: 10px;
 }
 
-.q_answer{
-  word-break: break-all;
-  margin-bottom: 20px;
-  padding: 5px 20px;
-  border-radius: 7px;
-  background: #fff;
-  transition: 0.3s ease-out;
-  display: none;
-
+.faq_category_item.active {
+  background: #fc0;
+  padding-left: 10px;
 }
-
-.q_answer.active{
-  display: block;
-}
-
-
-
-
 </style>

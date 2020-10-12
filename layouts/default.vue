@@ -7,7 +7,9 @@
     <Header />
     <div class="content">
       <div class="container">
+        <client-only>
         <CatalogStructure />
+        </client-only>
       </div>
       <transition name="component-fade" mode="out-in">
         <Nuxt />
@@ -43,6 +45,27 @@ export default {
 
 <style>
 
+/* GENERAL INPUT */
+
+.input_field {
+  border: 1px solid #999;
+  height: 35px;
+  margin-bottom: 10px;
+  transition: border-color 0.2s;
+}
+
+.input_field:focus,
+.input_field:active {
+  outline: none;
+  border-color: #fc0;
+  border-width: 2px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+/* GENERAL FORM BTN */
+
 .form_btn {
   height: 35px;
   background: #fc0;
@@ -68,6 +91,7 @@ export default {
 }
 
 /* CUSTOM CLASS FOR SIMPLERT */
+
 .simplert {
   z-index: 10000 !important;
 }
@@ -91,6 +115,8 @@ export default {
   background: none;
 }
 
+/* CLASS FOR IMAGES */
+
 .img_wrapper {
   display: flex;
   position: relative;
@@ -102,6 +128,8 @@ export default {
   height: 100%;
   visibility: hidden;
 }
+
+/* GENERAL SETTINGS */
 
 a:hover,
 a:visited,
@@ -199,6 +227,8 @@ h6 {
   overflow-wrap: break-word;
 }
 
+/* MAIN STYLES (BLOCKS, SHADOWS AND SO ON) */
+
 .main_block_style {
   /* border-radius: 7px; */
   background-color: #fff;
@@ -238,7 +268,8 @@ h6 {
   -webkit-user-select: none;
 }
 
-/* scroll */
+/* SCROLL */
+
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -277,7 +308,6 @@ h6 {
   margin: 0 auto 10px auto;
 }
 
-/* GET BACK BUTTON */
 /* GET BACK BUTTON */
 
 .get_back_block {

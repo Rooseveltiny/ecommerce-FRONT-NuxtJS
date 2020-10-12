@@ -4,7 +4,7 @@
       <label class="input_label" for="old_pass">Старый пароль</label>
       <input
         v-model="changePass.oldPass"
-        ired
+        required
         class="input_field"
         type="text"
         id="old_pass"
@@ -12,14 +12,14 @@
       <label class="input_label" for="newPassword">Новый пароль</label>
       <input
         v-model="changePass.newPass"
-        ired
+        required
         class="input_field"
         id="newPassword"
       />
       <label class="input_label" for="newPasswordRe">Повторить пароль</label>
       <input
         v-model="changePass.newPassRe"
-        ired
+        required
         class="input_field"
         id="newPasswordRe"
       />
@@ -88,10 +88,7 @@ export default {
   margin-bottom: 10px;
 }
 
-.input_field:focus,
-.input_field:active {
-  outline: none;
-}
+
 
 .input_label {
   font-size: 12px;

@@ -1,73 +1,91 @@
 <template>
   <transition name="component-fade" mode="out-in">
-  <div
-    v-if="getCatalogStructureVision"
-    id="MainCatalogStructure"
-    class="main_catalog_structure global_shadow main_block_style main_block_style-less"
-  >
-    <div id="CatalogCategories" class="catalog_categories" :class="{mb_categories_active: openedSubCategoriesOnMobiles}">
-      <div class="catalog_category_item">
-      <div @click="closeCatalogStructureDetaily()" class="close_catalog">Закрыть</div>
-      </div>
-      <template v-for="(cat, index) in getCategories">
-        <div
-          :key="index"
-          class="catalog_category_item"
-          @click="changeCurrentCategory(cat); openCloseSubCategoriesOnMobiles()"
-          :class="{active: cat==getCurrentCategory}"
-        >
-          <div class="catalog_category_icon">
-            <img
-              :src="cat.small_icon_link"
-              width="25px"
-              alt
-            />
+    <div
+      v-if="getCatalogStructureVision"
+      id="MainCatalogStructure"
+      class="main_catalog_structure global_shadow main_block_style main_block_style-less"
+    >
+      <div
+        id="CatalogCategories"
+        class="catalog_categories"
+        :class="{ mb_categories_active: openedSubCategoriesOnMobiles }"
+      >
+        <div class="catalog_category_item">
+          <div @click="closeCatalogStructureDetaily()" class="close_catalog">
+            Закрыть
           </div>
-          <div class="catalog_category_title">{{cat.title}}</div>
         </div>
-      </template>
-    </div>
-    <div id="CatalogSubCategories"
-     class="catalog_sub_categories"
-     :class="{mb_sub_categories_active: openedSubCategoriesOnMobiles}"
-     >
-<div class="sub_categories_btn_back">
-     <div class="close_catalog" v-if="openedSubCategoriesOnMobiles" @click="openCloseSubCategoriesOnMobiles">Назад</div>
-</div>
-
-      <div class="category_title">{{getCurrentCategory.title}}</div>
-      <div class="catalog_sub_categories_inner">
-        <template v-for="(sub_cat, index) in getCurrentCategory.children">
-          <div :key="index" class="catalog_sub_category">
-            <div class="catalog_sub_category_title">{{sub_cat.title}}</div>
-            <template v-for="(sub_cat_item, index) in sub_cat.children">
-              <div :key="index" class="sub_cat_item">
-                <!-- <router-link :to="{name: 'Catalog', params: {slug: sub_cat_item.slug}}"> -->
-                <router-link :to="`/products/category/${sub_cat_item.slug}`">
-                  <span @click="clearFilterParams(); closeCatalogStructureDetaily()">{{sub_cat_item.title}}</span>
-                </router-link>
-              </div>
-            </template>
+        <template v-for="(cat, index) in getCategories">
+          <div
+            :key="index"
+            class="catalog_category_item"
+            @click="
+              changeCurrentCategory(cat);
+              openCloseSubCategoriesOnMobiles();
+            "
+            :class="{ active: cat == getCurrentCategory }"
+          >
+            <div class="catalog_category_icon">
+              <img :src="cat.small_icon_link" width="25px" alt />
+            </div>
+            <div class="catalog_category_title">{{ cat.title }}</div>
           </div>
         </template>
       </div>
-    </div>
-    <div class="category_picture">
-      <div class="cat_image">
-        <img width="90%" :src="getCurrentCategory.cat_pic_link" alt="">
+      <div
+        id="CatalogSubCategories"
+        class="catalog_sub_categories"
+        :class="{ mb_sub_categories_active: openedSubCategoriesOnMobiles }"
+      >
+        <div class="sub_categories_btn_back">
+          <div
+            class="close_catalog"
+            v-if="openedSubCategoriesOnMobiles"
+            @click="openCloseSubCategoriesOnMobiles"
+          >
+            Назад
+          </div>
+        </div>
+
+        <div class="category_title">{{ getCurrentCategory.title }}</div>
+        <div class="catalog_sub_categories_inner">
+          <template v-for="(sub_cat, index) in getCurrentCategory.children">
+            <div :key="index" class="catalog_sub_category">
+              <div class="catalog_sub_category_title">{{ sub_cat.title }}</div>
+              <template v-for="(sub_cat_item, index) in sub_cat.children">
+                <div :key="index" class="sub_cat_item">
+                  <!-- <router-link :to="{name: 'Catalog', params: {slug: sub_cat_item.slug}}"> -->
+                  <router-link :to="`/products/category/${sub_cat_item.slug}`">
+                    <span
+                      @click="
+                        clearFilterParams();
+                        closeCatalogStructureDetaily();
+                      "
+                      >{{ sub_cat_item.title }}</span
+                    >
+                  </router-link>
+                </div>
+              </template>
+            </div>
+          </template>
+        </div>
+      </div>
+      <div class="category_picture">
+        <div class="cat_image">
+          <img width="90%" :src="getCurrentCategory.cat_pic_link" alt="" />
+        </div>
       </div>
     </div>
-  </div>
   </transition>
 </template>
 
 <script>
 import { mapMutations, mapGetters, mapActions } from "vuex";
 export default {
-  data(){
+  data() {
     return {
-      openedSubCategoriesOnMobiles: false
-    }
+      openedSubCategoriesOnMobiles: false,
+    };
   },
   computed: {
     ...mapGetters({
@@ -77,54 +95,66 @@ export default {
     }),
   },
   methods: {
-    ...mapActions({fetchCatalogStructure: "catalog/fetchCatalogStructure"}),
+    ...mapActions({ fetchCatalogStructure: "catalog/fetchCatalogStructure" }),
     ...mapMutations({
       changeCurrentPage: "generals/changeCurrentPage",
       clearFilterParams: "catalog/clearFilterParams",
-      changeCurrentCategory :"catalog/changeCurrentCategory",
+      changeCurrentCategory: "catalog/changeCurrentCategory",
       closeCatalogStructure: "catalog/closeCatalogStructure",
     }),
-    openCloseSubCategoriesOnMobiles(){
+    openCloseSubCategoriesOnMobiles() {
       this.openedSubCategoriesOnMobiles = !this.openedSubCategoriesOnMobiles;
     },
-    closeCatalogStructureDetaily(){
+    closeCatalogStructureDetaily() {
       this.closeCatalogStructure();
       this.openedSubCategoriesOnMobiles = false;
-    }
+    },
   },
   async mounted() {
     await this.fetchCatalogStructure();
+  },
+  created() {
+    document.addEventListener("click", (event) => {
+      if (this.getCatalogStructureVision) {
+        if (event.srcElement.id !== "CatalogStructure") {
+          for (let element of event.path) {
+            if (element.id === "MainCatalogStructure") {
+              return;
+            }
+          }
+          this.closeCatalogStructure();
+        }
+      }
+    });
   },
 };
 </script>
 
 <style scoped>
-
 /* CATEGORIES */
 
-.close_catalog{
+.close_catalog {
   background-color: #fc0;
   padding: 5px 10px;
   display: none;
 }
 
-.sub_categories_btn{
+.sub_categories_btn {
   padding-left: 0;
   margin-left: 10px;
 }
 
-
 .main_catalog_structure {
   width: 100%;
-    position: absolute;
-    left: 0;
-    z-index: 1400;
-    display: flex;
-    max-width: 1070px;
-    padding-right: 0;
-    padding-left: 0;
-    margin-right: 15px;
-    margin-left: 15px;
+  position: absolute;
+  left: 0;
+  z-index: 1400;
+  display: flex;
+  max-width: 1070px;
+  padding-right: 0;
+  padding-left: 0;
+  margin-right: 15px;
+  margin-left: 15px;
 }
 
 .catalog_categories {
@@ -141,7 +171,7 @@ export default {
   cursor: pointer;
 }
 
-.catalog_category_item:first-child{
+.catalog_category_item:first-child {
   display: none;
 }
 
@@ -167,7 +197,7 @@ export default {
 
 /* SUB CATEGORIES */
 
-.catalog_sub_category{
+.catalog_sub_category {
   width: 50%;
 }
 
@@ -191,7 +221,7 @@ export default {
   width: 50%;
 }
 
-.catalog_sub_categories_inner{
+.catalog_sub_categories_inner {
   display: flex;
   flex-wrap: wrap;
 }
@@ -210,7 +240,7 @@ export default {
 .sub_cat_item {
   color: #666;
   padding: 0 5px;
-  transition-duration: .5s;
+  transition-duration: 0.5s;
 }
 
 .sub_cat_item:hover {
@@ -218,102 +248,97 @@ export default {
 }
 
 /* CATEGORY PICTURE */
-.category_picture{
+.category_picture {
   width: 20%;
   display: flex;
   align-items: center;
 }
 
-.cat_image{
+.cat_image {
   display: flex;
   align-items: center;
 }
 
-
 /* making catalog structure for mobiles */
-@media (max-width: 575px){
-  
-  .main_catalog_structure{
+@media (max-width: 575px) {
+  .main_catalog_structure {
     padding: 0;
     margin: 0;
   }
 
-  .category_picture{
+  .category_picture {
     display: none;
   }
 
-  .catalog_sub_categories{
+  .catalog_sub_categories {
     display: none;
   }
 
-  .catalog_categories{
+  .catalog_categories {
     width: 100%;
   }
 
-  .catalog_category_item{
+  .catalog_category_item {
     padding-top: 10px;
     padding-bottom: 10px;
   }
 
-  .catalog_category_item:first-child{
+  .catalog_category_item:first-child {
     display: block;
   }
 
-  .catalog_category_item.active{
+  .catalog_category_item.active {
     background: none;
   }
 
-  .main_catalog_structure{
+  .main_catalog_structure {
     top: -115px;
   }
 
-  .close_catalog{
+  .close_catalog {
     display: inline-block;
   }
 
-  .mb_sub_categories_active{
+  .mb_sub_categories_active {
     display: block;
   }
 
-  .mb_categories_active{
+  .mb_categories_active {
     display: none;
   }
 
-  .category_title{
+  .category_title {
     display: none;
   }
 
-  .catalog_sub_category_title{
+  .catalog_sub_category_title {
     padding: 5px 15px;
   }
 
-  .sub_cat_item{
+  .sub_cat_item {
     padding: 3px 15px;
   }
 
-  .sub_categories_btn_back{
+  .sub_categories_btn_back {
     padding: 15px 10px 15px 0;
     margin-left: 15px;
   }
 
-  .catalog_sub_categories{
+  .catalog_sub_categories {
     width: 100%;
   }
 
-  .catalog_sub_categories_inner{
+  .catalog_sub_categories_inner {
     padding-bottom: 20px;
     width: 100%;
   }
 
-  .catalog_sub_category{
+  .catalog_sub_category {
     display: inline-block;
     flex-wrap: wrap;
     width: 100%;
     padding-bottom: 10px;
   }
-
 }
-
-
 </style>
 

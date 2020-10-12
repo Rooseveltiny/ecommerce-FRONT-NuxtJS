@@ -292,6 +292,16 @@ export default {
   transition: border-color 0.2s;
 }
 
+.input_field:focus,
+.input_field:active {
+  outline: none;
+  border-color: #fc0;
+  border-width: 2px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
 .input_label {
   color: #999;
   font-size: 13px;
@@ -304,15 +314,7 @@ export default {
   margin: 5px auto 0 auto;
 }
 
-.input_field:focus,
-.input_field:active {
-  outline: none;
-  border-color: #fc0;
-  border-width: 2px;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-}
+
 
 .type_btn {
   color: #666;

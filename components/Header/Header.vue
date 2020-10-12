@@ -27,32 +27,44 @@
           <div class="bottom_header_left">
             <nuxt-link to="/">
               <div class="logo">
-                <img height="40px" :src="require('../../assets/logo/logo.svg')" alt />
+                <img
+                  height="40px"
+                  :src="require('../../assets/logo/logo.svg')"
+                  alt
+                />
               </div>
             </nuxt-link>
-
             <transition name="bounce">
-              <div class="catalog">
+              <div class="catalog" id="CatalogSctructureBtnMain">
                 <div
                   @click="showCatalogStructureComponentMethod()"
                   class="catalog_inner non-select"
-                  :class="{active: getCatalogStructureVision}"
+                  :class="{ active: getCatalogStructureVision }"
                   id="CatalogStructure"
-                >Каталог продукции</div>
+                >
+                  Каталог продукции
+                </div>
               </div>
             </transition>
           </div>
           <div class="bottom_header_right">
             <client-only>
-            <Search />
+              <Search />
             </client-only>
             <nuxt-link to="/cart">
-            <div
-              class="cart_icon"
-              :class="{'cart_icon-empty': !getCartProducts.length, 'cart_icon-full': getCartProducts.length}"
-            >
-            <span class="cart_quantity" :class="{'cart_quantity-not_null': getCartProducts.length}">{{getCartProducts.length}}</span>
-            </div>
+              <div
+                class="cart_icon"
+                :class="{
+                  'cart_icon-empty': !getCartProducts.length,
+                  'cart_icon-full': getCartProducts.length,
+                }"
+              >
+                <span
+                  class="cart_quantity"
+                  :class="{ 'cart_quantity-not_null': getCartProducts.length }"
+                  >{{ getCartProducts.length }}</span
+                >
+              </div>
             </nuxt-link>
           </div>
         </div>
@@ -63,18 +75,24 @@
 
 <script>
 import { mapMutations, mapGetters } from "vuex";
-import Search from '../Generals/Search'
-import UserHeader from '@/components/User/UserHeader'
+import Search from "../Generals/Search";
+import UserHeader from "@/components/User/UserHeader";
 
 export default {
   methods: {
-    ...mapMutations({openCloseCatalogStructureGeneral :'catalog/openCloseCatalogStructureGeneral'}),
+    ...mapMutations({
+      openCloseCatalogStructureGeneral:
+        "catalog/openCloseCatalogStructureGeneral",
+    }),
     showCatalogStructureComponentMethod: function () {
       this.openCloseCatalogStructureGeneral();
     },
   },
   computed: {
-    ...mapGetters({getCatalogStructureVision: "catalog/getCatalogStructureVision", getCartProducts: "cart/getCartProducts"}),
+    ...mapGetters({
+      getCatalogStructureVision: "catalog/getCatalogStructureVision",
+      getCartProducts: "cart/getCartProducts",
+    }),
   },
 };
 </script>
@@ -98,11 +116,11 @@ export default {
 }
 
 .nav-left-part {
-      min-width: 35%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    font-size: 13px;
+  min-width: 35%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 13px;
 }
 
 .nav-right-part {
@@ -179,14 +197,14 @@ export default {
 
 .catalog_inner.active::before {
   border-top: none;
-  border-bottom: 3px solid rgb(252, 102, 102);
+  border-bottom: 3px solid#333;
   transform: rotate(-45deg);
   top: 42%;
 }
 
 .catalog_inner.active::after {
   border-bottom: none;
-  border-top: 3px solid rgb(252, 102, 102);
+  border-top: 3px solid #333;
   transform: rotate(45deg);
   top: 47%;
 }
@@ -195,11 +213,11 @@ export default {
   background-color: #ffe373;
 }
 
-.catalog_inner.active {
+/* .catalog_inner.active {
   background-color: #fff;
   border: 2px solid rgb(252, 102, 102);
   color: rgb(252, 102, 102);
-}
+} */
 
 .bottom_header_right {
   width: 45%;
@@ -226,26 +244,26 @@ export default {
   height: 40px;
   margin-left: 20px;
   background-position-y: center;
-  transition-duration: .5s;
+  transition-duration: 0.5s;
   position: relative;
   display: flex;
   justify-content: flex-end;
-    align-items: flex-end;
+  align-items: flex-end;
 }
 
-.cart_quantity{
+.cart_quantity {
   position: absolute;
   font-size: 10px;
-  background-color: rgb(240,240,240);
+  background-color: rgb(240, 240, 240);
   padding: 3px;
   border-radius: 30px;
-  transition-duration: .5s;
+  transition-duration: 0.5s;
   right: -1px;
   top: 25px;
   font-weight: bold;
 }
 
-.cart_quantity-not_null{
+.cart_quantity-not_null {
   position: absolute;
   background-color: #fc0;
   right: -16px;
