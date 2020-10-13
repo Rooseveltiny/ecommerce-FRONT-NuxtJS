@@ -59,7 +59,6 @@
 <script>
 import { mapActions, mapGetters, mapMutations } from "vuex";
 import ChangeInCart from "../components/Cart/ChangeInCart";
-// import dialogs from "../../dialogs/dialogs";
 
 export default {
   components: { ChangeInCart },
@@ -80,20 +79,11 @@ export default {
           });
         }
       };
-
-      let dialog = dialogs.YesNoDialog;
-      dialog.onConfirm = callBackFunction;
-      dialog.message = "Очистить корзину?";
-      this.$Simplert.open(dialog);
+      callBackFunction();
     },
     async deleteFromCartFunc(product) {
       let obj = { productLink: product.product_object.link };
-      let dialog = dialogs.YesNoDialog;
-      dialog.message = "Удалить товар?";
-      dialog.onConfirm = () => {
         this.deleteFromCart(obj);
-      };
-      this.$Simplert.open(dialog);
     },
   },
 };

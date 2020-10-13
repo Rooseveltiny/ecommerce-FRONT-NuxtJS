@@ -120,7 +120,7 @@ export default {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .nav-right-part {
@@ -129,7 +129,7 @@ export default {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 /* BOTTOM HEADER */

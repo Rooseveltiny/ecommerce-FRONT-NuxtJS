@@ -6,7 +6,7 @@
         class="catalog_item main_block_style main_block_style-less"
       >
         <div class="product_img">
-          <template v-show="product.all_images.length">
+          <template v-if="product.all_images.length">
             <div class="img_wrapper">
               <img
                 onload="this.style.visibility='visible'"

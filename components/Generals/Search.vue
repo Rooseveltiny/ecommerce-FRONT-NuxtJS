@@ -10,7 +10,8 @@
       <div class="search_icon">
         <img
           width="18px"
-          src="https://e-commerce-vdk.s3.eu-central-1.amazonaws.com/pics/search.png"
+          @click="searchInput = ''"
+          :src="`https://e-commerce-vdk.s3.eu-central-1.amazonaws.com/pics/${searchIcon}`"
           alt
         />
       </div>
@@ -75,6 +76,9 @@ export default {
     ...mapGetters({getSearchResult: "search/getSearchResult"}),
     showSearchingBlock(){
       return !this.getSearchResult.products.length && !this.getSearchResult.categories.length && !this.getSearchResult.nothing_found;
+    },
+    searchIcon(){
+      return this.searchInput.length ? 'cancel_search.svg' : 'search.png'
     }
   },
   methods: {
@@ -160,6 +164,7 @@ export default {
   right: 20px;
   top: 25%;
   display: flex;
+  cursor: pointer;
 }
 
 /* Search result */

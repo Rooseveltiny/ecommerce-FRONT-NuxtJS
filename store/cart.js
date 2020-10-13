@@ -1,5 +1,4 @@
 import ApiSettings from './ApiSettings'
-// import notify from '../../notifications/notificationTemplates'
 
 export default {
     actions: {
@@ -23,10 +22,8 @@ export default {
             await fetch(`${ApiSettings.BASE_ROUTE}/cart_product`, request_obj).then(async (response)=>{
                 if (response.status != 500){
                     dispatch('fetchCart');
-                    notify.changeInCart();
                 }
             }).catch(()=>{
-                notify.internetConnectionErrorNotification();
             })
         },
         async addToCart({ commit, getters, dispatch }, inputData) {
@@ -47,10 +44,8 @@ export default {
                     let resp_data = await response.json();
                     commit('updateCartUUID', resp_data);
                     dispatch('fetchCart');
-                    notify.addToCart('Товар успешно добавлен в корзину', `${resp_data.product_object.title} в корзине: ${resp_data.quantity} ${resp_data.product_object.unit_of_measurement}`)
                 }
             }).catch(() => {
-                notify.internetConnectionErrorNotification();
             });
         },
         async deleteFromCart({ getters, dispatch }, inputData) {
@@ -66,10 +61,8 @@ export default {
             await fetch(`${ApiSettings.BASE_ROUTE}/cart_product`, request_obj).then(async (response) => {
                 if (response.status != 500) {
                     dispatch('fetchCart');
-                    notify.deletedFromCart();
                 }
             }).catch(() => {
-                notify.internetConnectionErrorNotification();
             });
         }
     },

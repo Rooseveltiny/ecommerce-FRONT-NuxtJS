@@ -45,7 +45,10 @@ export default {
 
 <style>
 
+
 /* GENERAL INPUT */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 .input_field {
   border: 1px solid #999;
@@ -145,8 +148,10 @@ a:active {
   margin-top: auto;
 }
 
+
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Arial", "PT Sans",
+  font-family: 'Noto Sans JP', 'sans-serif', -apple-system, BlinkMacSystemFont, "Arial", "PT Sans",
     "Helvetica", "Arial", sans-serif;
   font-size: 15px;
   color: #333;

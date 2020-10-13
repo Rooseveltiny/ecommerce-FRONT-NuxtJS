@@ -13,13 +13,13 @@
                 @click="changeCurrentCategory(item)"
                 :key="index"
               >
-                {{ item.title }}
+                {{ item.question }}
               </div>
             </template>
           </div>
           <div class="faq_content main_block_style main_block_style-less">
-            <div class="faq_content_title">{{ currentFaq.title }}</div>
-            {{ currentFaq.content }}
+            <div class="faq_content_title">{{ currentFaq.question }}</div>
+            <div class="faq_content_text" v-html="currentFaq.answer"></div>
           </div>
         </div>
       </div>
@@ -29,60 +29,57 @@
 
 <script>
 export default {
+  async asyncData({ $api_ecommerce_vdk }) {
+    const faqItems = await $api_ecommerce_vdk.$get("faq");
+    let currentFaq = undefined;
+
+    if (faqItems.length) {
+      currentFaq = faqItems[0]
+    }
+    return { faqItems, currentFaq };
+  },
+  data: () => ({
+    currentFaq: undefined,
+  }),
   methods: {
     changeCurrentCategory(cat) {
       this.currentFaq = cat;
     },
   },
-  asyncData() {
-    return {
-      faqItems: [
-        {
-          title: "Доставка по России",
-          content:
-            "Доставка по России осуществляется различными транспортными компаниями",
-        },
-        {
-          title: "Доставка по Вологодской области",
-          content:
-            "Отправляем личным траснпортом, либо привлекаем газели местных транспортных компаний",
-        },
-        {
-          title: "Способы оплаты",
-          content:
-            "Оплатить заказы можно переводом на карту, по безналу, либо наличными",
-        },
-      ],
-      currentFaq: undefined,
-    };
-  },
-  created() {
-    if (this.faqItems.length) {
-      this.currentFaq = this.faqItems[0];
-    }
-  },
+  created() {},
 };
 </script>
 
 <style scoped>
+
+ul{
+  padding-left: 15px;
+}
+
 .faq_inner {
   display: flex;
 }
 
 .faq_left_side_bar {
-  width: 25%;
+  width: 30%;
   margin-right: 15px;
   height: 100%;
 }
 
 .faq_content {
-  width: 75%;
+  width: 70%;
+  height: 100%;
+}
+
+.faq_content_text{
+  text-align: justify;
 }
 
 .faq_content_title {
   color: black;
   font-size: 20px;
   font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .faq_category_item {
@@ -90,6 +87,7 @@ export default {
   cursor: pointer;
   transition-duration: 0.5s;
   padding: 5px 10px 5px 0;
+  margin: 5px 0;
 }
 
 .faq_categories_title {
