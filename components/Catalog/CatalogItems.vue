@@ -7,12 +7,12 @@
       >
         <div class="product_img">
           <template v-if="product.all_images.length">
-            <div class="img_wrapper">
-              <img
+            <div class="img_wrapper" :style="{'background-image': `url(${product.all_images[0].cloud_link}`}">
+              <!-- <img
                 onload="this.style.visibility='visible'"
                 :src="product.all_images[0].cloud_link"
                 alt
-              />
+              /> -->
             </div>
           </template>
         </div>

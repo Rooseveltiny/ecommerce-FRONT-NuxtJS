@@ -1,0 +1,22 @@
+[
+    {
+        "icon": "https://e-commerce-vdk.s3.eu-central-1.amazonaws.com/pics/icons/benefits/clock.svg",
+        "title": "Быстро. Очень быстро.",
+        "content": "В строительстве важны сроки поставки материалов. Поэтому мы стремимся производить продукцию в кратчайшие сроки без ущерба качеству."
+    },
+    {
+        "icon": "https://e-commerce-vdk.s3.eu-central-1.amazonaws.com/pics/icons/benefits/data.svg",
+        "title": "Сервисы. Удобство.",
+        "content": "Мы стараемся сделать так, чтобы нашим клиентам всегда было удобно сотрудничать с нами. Для этого создаем различные сервисы!"
+    },
+    {
+        "icon": "https://e-commerce-vdk.s3.eu-central-1.amazonaws.com/pics/icons/benefits/logistics.svg",
+        "title": "Доставка. По всей стране.",
+        "content": "Наши менеджеры готовы обеспечить успешную доставку продукции в любой населённый пункт России."
+    },
+    {
+        "icon": "https://e-commerce-vdk.s3.eu-central-1.amazonaws.com/pics/icons/benefits/calculator.svg",
+        "title": "Расчёт материала",
+        "content": "Наши менеджеры имеют богатый опыт в расчёте кровельных и фасадных материалов. Мы используем специализированное ПО для этих целей."
+    }
+]

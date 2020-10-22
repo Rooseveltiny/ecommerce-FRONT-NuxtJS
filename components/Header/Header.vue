@@ -14,6 +14,9 @@
                 <nuxt-link to="/feedback">
                   <span class="nav_link">Обратная связь</span>
                 </nuxt-link>
+                <nuxt-link to="/about_company">
+                  <span class="nav_link">О компании</span>
+                </nuxt-link>
               </div>
               <div class="nav-right-part"><UserHeader /></div>
             </div>

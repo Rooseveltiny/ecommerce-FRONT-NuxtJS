@@ -113,14 +113,13 @@ label {
 }
 
 .input_field {
-  height: 35px;
-  /* border: 1px solid rgb(238, 238, 238); */
-  border: none;
-  /* border-radius: 5px; */
-  background-color: #f6f6f6;
-  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
-  -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
+height: 35px;
+    /* border: 1px solid rgb(238, 238, 238); */
+    border: none;
+    /* border-radius: 5px; */
+    /* background-color: #f6f6f6; */
+    /* box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15); */
+    border: 1px solid #999;
 }
 
 .form_field-radio {

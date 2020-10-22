@@ -35,6 +35,8 @@
         </div>
       </div>
       <div class="section_inner" v-if="currentSection === 'Файлы'">
+        <template v-if="product.all_files.length">
+          <div class="files_title">Файлы номенклатуры:</div>
         <div
           v-for="(file, index) in product.all_files"
           :key="index"
@@ -44,6 +46,8 @@
             ><span class="file_title">{{ file.title }}</span></a
           >
         </div>
+        </template>
+        
       </div>
     </div>
   </div>
@@ -59,12 +63,19 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({ product: "product/product" }),
+    ...mapGetters({ 
+      product: "product/product"
+    }),
   },
 };
 </script>
 
 <style scoped>
+
+.files_title{
+  color: #666;
+}
+
 .file_title {
   color: #0d61af;
   border-bottom: 1px dotted;

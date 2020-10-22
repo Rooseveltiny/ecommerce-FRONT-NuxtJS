@@ -1,6 +1,6 @@
 export default {
     actions: {
-        async regUser({ }, regData) {
+        async regUser(_, regData) {
             return await this.$api_ecommerce_auth.post('users/', regData).then(response => {
                 return response
             }).catch((error) => {

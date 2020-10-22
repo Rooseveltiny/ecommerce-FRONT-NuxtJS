@@ -20,7 +20,8 @@ export default {
   plugins: [
     {src: '~plugins/vue-notifications', ssr: false},
     '~plugins/hooper',
-    '~plugins/api_ecommerce_vdk'
+    '~plugins/api_ecommerce_vdk',
+    {src: '~plugins/vue_typer', mode: 'client'}
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
