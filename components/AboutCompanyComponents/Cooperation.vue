@@ -5,7 +5,7 @@
         <div class="cooperation_inner">
             <div class="cooperation_item">Сформируйте заявку на сайте или свяжитесь с нами по электронной почте.</div>
             <div class="cooperation_item">Рассчитайте необходимое колличество материала с нашим сотрудником.</div>
-            <div class="cooperation_item">Оплатите заказ удобным для Вас способом (наличный или безналичный рассчёт).</div>
+            <div class="cooperation_item">Оплатите заказ удобным для Вас способом (наличный или безналичный расчёт).</div>
             <div class="cooperation_item">Ожидайте доставку заказа на Ваш объект.</div>
         </div>
     </div>
@@ -43,6 +43,39 @@ export default {};
     height: 40px;
     left: -60px;
     position: absolute;
+}
+
+@media (max-width: 990px){
+    .cooperation_inner{
+        width: 80%;
+    }
+}
+
+@media (max-width: 770px){
+    .cooperation_inner{
+        width: 100%;
+    }
+    .cooperation_item::before{
+        width: 30px;
+        height: 30px;
+        left: -50px;
+    }
+}
+
+@media (max-width: 575px){
+    .cooperation_inner{
+        padding-left: 30px;
+    }
+
+    .cooperation_item{
+        font-size: 12px;
+    }
+
+    .cooperation_item::before{
+        width: 20px;
+        height: 20px;
+        left: -35px;
+    }  
 }
 
 </style>

@@ -77,5 +77,48 @@ export default {
     margin: 15px 0;
 }
 
+/* addoptation */
+
+@media (max-width: 990px){
+  .typer_found{
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 770px){
+  .typer_found{
+    font-size: 12px;
+  }
+  .company_founded_logo{
+    width: 250px;
+    height: 250px;
+  }
+}
+
+@media (max-width: 575px){
+ 
+  .company_found_list_content{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 15px 0 0 0;
+  }
+
+  .company_found_list{
+        display: flex;
+    flex-flow: column;
+    flex-direction: column-reverse;
+  }
+  .company_founded_logo{
+      margin: 0;
+      width: 150px;
+      height: 150px;
+    }
+
+  .typer_found{
+    margin: 10px 0;
+}
+
+}
+
 
 </style>

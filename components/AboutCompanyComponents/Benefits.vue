@@ -94,4 +94,42 @@ export default {
 .benefits_title_content{
     width: 100%;
 }
+
+/* ADOPTATION */
+
+/* @media (max-width:) */
+
+@media (max-width: 770px){
+  .benefits_inner{
+    flex-wrap: wrap;
+  }
+
+  .benefit_item{
+    width: 100%;
+  }
+
+  .benefit_icon{
+  }
+}
+
+
+@media (max-width: 575px){
+
+.benefit_item{
+  margin-top: 25px;
+  width: 100%;
+  display: inline-flex;
+  flex-direction: column;
+}
+.benefit_icon{
+  height: 70px;
+  margin: 5px auto;
+  background-size: 45%;
+}
+
+.benefit_title{
+  font-size: 17px;
+}
+
+}
 </style>

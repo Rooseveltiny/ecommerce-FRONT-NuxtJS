@@ -57,4 +57,35 @@ data(){
   margin: 0 auto;
 }
 
+/* ADOPTATIONS */
+@media (max-width: 990px){
+  .description_product_item{
+    margin: 10px 5px;
+    padding: 5px 15px;
+    width: 47%;
+    height: 100%;
+  }
+}
+
+@media (max-width: 770px){
+  .description_content{
+    text-align: center;
+    font-size: 17px;
+    width: 100%;
+    margin: 15px auto;
+  }
+}
+@media (max-width: 575px){
+  .description_content{
+    font-size: 14px;
+    text-align: left;
+  }
+  .description_product_item{
+    text-align: center;
+    width: 100%;
+    margin: 7px 0;
+  }
+}
+
+
 </style>

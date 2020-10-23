@@ -76,4 +76,50 @@ export default {};
     margin-left: 0;
 }
 
+@media (max-width: 770px){
+    
+    .catalog_title{
+        font-size: 17px;
+    }
+
+    .catalog_text{
+        font-size: 15px;
+    }
+
+    .catalog_items{
+        flex-direction: column;
+    }
+
+    .catalog_item{
+    margin: 7px 0;
+    }
+
+    .catalog_icon{
+        background-size: 70%;
+    }
+
+}
+@media (max-width: 575px){
+
+    .catalog_icon{
+        display: none;
+    }
+
+    .catalog_content{
+        width: 100%;
+    }
+
+    .catalog_title{
+        font-size: 15px;
+    }
+    .catalog_text{
+        font-size: 13px;
+    }
+    .catalog{
+        margin-top: 10px;
+    }
+
+}
+
+
 </style>

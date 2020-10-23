@@ -37,4 +37,29 @@ export default {};
     cursor: pointer;
 }
 
+@media (max-width: 770px){
+
+  .feedback_block{
+    height: 175px;
+  }
+
+  .feedback_btn{
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    font-size: 15px;
+  }
+
+}
+
+@media (max-width: 575px){
+  .feedback_block{
+    height: 165px;
+    background-size: 200%;
+  }
+
+  .feedback_btn{
+    font-size: 13px;
+  }
+}
+
 </style>
