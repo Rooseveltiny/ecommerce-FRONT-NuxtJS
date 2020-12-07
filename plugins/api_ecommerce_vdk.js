@@ -8,6 +8,10 @@ export default ({ $axios }, inject) => {
       baseRoute: ApiSettings.BASE_ROUTE
     },
     {
+      name: 'api_ecommerce_v2',
+      baseRoute: ApiSettings.BASE_ROUTE_V2
+    },
+    {
       name: 'api_ecommerce_auth',
       baseRoute: ApiSettings.AUTH_ROUTE
     }

@@ -26,7 +26,7 @@
             :class="{ active: cat == getCurrentCategory }"
           >
             <div class="catalog_category_icon">
-              <img :src="cat.small_icon_link" width="25px" alt />
+              <img :src="cat.icon" width="25px" alt />
             </div>
             <div class="catalog_category_title">{{ cat.title }}</div>
           </div>
@@ -49,12 +49,11 @@
 
         <div class="category_title">{{ getCurrentCategory.title }}</div>
         <div class="catalog_sub_categories_inner">
-          <template v-for="(sub_cat, index) in getCurrentCategory.children">
+          <template v-for="(sub_cat, index) in getCurrentCategory.kids">
             <div :key="index" class="catalog_sub_category">
               <div class="catalog_sub_category_title">{{ sub_cat.title }}</div>
-              <template v-for="(sub_cat_item, index) in sub_cat.children">
+              <template v-for="(sub_cat_item, index) in sub_cat.kids">
                 <div :key="index" class="sub_cat_item">
-                  <!-- <router-link :to="{name: 'Catalog', params: {slug: sub_cat_item.slug}}"> -->
                   <router-link :to="`/products/category/${sub_cat_item.slug}`">
                     <span
                       @click="
@@ -72,7 +71,7 @@
       </div>
       <div class="category_picture">
         <div class="cat_image">
-          <img width="90%" :src="getCurrentCategory.cat_pic_link" alt="" />
+          <img width="90%" :src="getCurrentCategory.cat_pic" alt="" />
         </div>
       </div>
     </div>

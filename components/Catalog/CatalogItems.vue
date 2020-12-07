@@ -6,14 +6,8 @@
         class="catalog_item main_block_style main_block_style-less"
       >
         <div class="product_img">
-          <template v-if="product.all_images.length">
-            <div class="img_wrapper" :style="{'background-image': `url(${product.all_images[0].cloud_link}`}">
-              <!-- <img
-                onload="this.style.visibility='visible'"
-                :src="product.all_images[0].cloud_link"
-                alt
-              /> -->
-            </div>
+          <template v-if="product.files.images">
+            <div class="img_wrapper" :style="{'background-image': `url(${product.files.images[0].cloud_link}`}"></div>
           </template>
         </div>
         <div class="product_info">
@@ -22,27 +16,22 @@
               <div class="title">{{ product.title }}</div>
             </nuxt-link>
             <div class="price">
-              <div class="product_price">{{ product.price }} ₽/</div>
-              <div class="product_unit">{{ product.unit_of_measurement }}</div>
+              <div class="product_price">{{ product.price }}</div>
             </div>
           </div>
           <div class="product_characteristic">
             <div
-              v-for="(detail, index) in product.detail"
+              v-for="(detail, index) in product.details"
               :key="index"
               class="product_characteristic_item"
             >
-              {{ detail }}
+              {{ detail.title }}
             </div>
           </div>
           <div class="product_info_inner">
             <div class="balance">
-              На складе
               <div class="balance_style">
                 <div class="product_balance">{{ product.balance }}</div>
-                <div class="product_unit">
-                  {{ product.unit_of_measurement }}
-                </div>
               </div>
               <!-- <hint-component :hintContent="balanceHint" iconWidthHeight="15px"/> -->
             </div>
@@ -125,6 +114,7 @@ export default {
   background-color: rgb(255, 249, 195);
   /* cursor: none; */
   white-space: nowrap;
+  font-size: 14px;
 }
 
 .catalog_item {
@@ -143,13 +133,6 @@ export default {
   /* border-radius: 7px; */
 }
 
-.balance_style {
-  display: flex;
-  padding: 0 5px;
-  margin: 0 5px;
-  /* background-color: #fc0; */
-  position: relative;
-}
 
 .buy_btn {
   transition-duration: 0.3s;
@@ -158,7 +141,6 @@ export default {
   padding: 0 20px;
   outline: none;
   background-color: #fff;
-  color: #333;
 }
 
 .catalog_item:hover .buy_btn {
@@ -166,7 +148,6 @@ export default {
 }
 
 .title {
-  color: #333;
   cursor: pointer;
   transition-duration: 0.5s;
 }

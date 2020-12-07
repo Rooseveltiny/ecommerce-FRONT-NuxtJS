@@ -98,13 +98,11 @@
   .footer {
     margin-top: auto;
   }
-  
-  
-  
+    
   body {
     font-family: Roboto, Fallback,sans-serif;
     font-size: 15px;
-    color: #333;
+    color: black;
     line-height: 1.6;
     margin: 0;
     background-color: #f6f6f6;

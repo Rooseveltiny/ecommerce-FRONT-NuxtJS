@@ -4,21 +4,22 @@ export default {
     actions: {
         async fetchProducts({ commit }) {
             commit('updateShowCatalogBlock', true);
-            const categoryAndQueryParams = this.$router.currentRoute.fullPath;
-            const res = await fetch(`${ApiSettings.BASE_ROUTE}${categoryAndQueryParams}`);
-            const products = await res.json();
-            commit('updateProducts', products);
+            await this.$api_ecommerce_v2.$get(`${this.$router.currentRoute.fullPath}`).then((products)=>{
+                commit('updateProducts', products);
+            })
             commit('updateShowCatalogBlock', false);
         },
         async fetchFilter({ commit }) {
-            const res = await fetch(`${ApiSettings.BASE_ROUTE}/products/filter/${this.$router.currentRoute.params.slug}`);
-            const filter = await res.json();
-            commit('updateFilter', filter);
+            await this.$api_ecommerce_v2.$get(`catalog_filter/${this.$router.currentRoute.params.slug}`).then(
+                (filter)=>{
+                    commit('updateFilter', filter);
+                }
+            )
         },
         async fetchCatalogStructure({ commit }) {
-            const res = await fetch(`${ApiSettings.BASE_ROUTE}/catalog_structure`);
-            const categories = await res.json();
-            commit('updateCategories', categories);
+            await this.$api_ecommerce_v2.$get('catalog_structure').then((data)=>{
+                commit('updateCategories', data)
+            })
         },
         setQueryParams({ getters }) {
             let queryObj = Object();
@@ -57,9 +58,9 @@ export default {
         updateProducts(state, products) {
             state.products.productsList = products.results;
             let pag = products;
-            if (pag.next) { pag.next = pag.next.replace(ApiSettings.BASE_ROUTE, '') }
-            if (pag.previous) { pag.previous = pag.previous.replace(ApiSettings.BASE_ROUTE, '') }
-            if (pag.page_links) { pag.page_links.map(value => { value.link = value.link.replace(ApiSettings.BASE_ROUTE, '') }); }
+            if (pag.next) { pag.next = pag.next.replace(ApiSettings.BASE_ROUTE_V2, '') }
+            if (pag.previous) { pag.previous = pag.previous.replace(ApiSettings.BASE_ROUTE_V2, '') }
+            if (pag.page_links) { pag.page_links.map(value => { value.link = value.link.replace(ApiSettings.BASE_ROUTE_V2, '') }); }
             state.products.productsPagination = products;
         },
         updateShowCatalogBlock(state, show) {
