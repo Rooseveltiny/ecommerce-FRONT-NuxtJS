@@ -1,47 +1,7 @@
 <template>
   <div>
     <template v-for="(product, index) in getProducts">
-      <div
-        :key="index"
-        class="catalog_item main_block_style main_block_style-less"
-      >
-        <div class="product_img non-select">
-          <template v-if="product.files.images.length">
-            <div class="img_wrapper" :style="{'background-image': `url(${product.files.images[0].cloud_link})`}"></div>
-          </template>
-          <template v-else>
-            <div class="no_image">Нет изображения</div>
-          </template>
-        </div>
-        <div class="product_info">
-          <div class="product_title">
-            <nuxt-link :to="{ path: `/catalog/product/${product.link}` }">
-              <div class="title">{{ product.title }}</div>
-            </nuxt-link>
-            <div class="price">
-              <div class="product_price">{{ product.price }}</div>
-            </div>
-          </div>
-          <div class="product_characteristic">
-            <div
-              v-for="(detail, index) in product.details"
-              :key="index"
-              class="product_characteristic_item"
-            >
-              {{ detail.title }}
-            </div>
-          </div>
-          <div class="product_info_inner">
-            <div class="balance">
-              <div class="balance_style">
-                <div class="product_balance">{{ product.balance }}</div>
-              </div>
-              <hint-component :hintContent="balanceHint" iconWidthHeight="15px"/>
-            </div>
-            <addToCartBtn :productLink="product.link" />
-          </div>
-        </div>
-      </div>
+      <CatalogItem :key="index" :product="product" />
     </template>
   </div>
 </template>
@@ -49,6 +9,7 @@
 <script>
 import { mapActions, mapGetters, mapMutations } from "vuex";
 import addToCartBtn from "@/components/Cart/AddToCartBtn";
+import CatalogItem from "@/components/Catalog/CatalogItem"
 
 export default {
   components: {
@@ -74,110 +35,4 @@ export default {
 };
 </script>
 
-<style scoped>
-
-.no_image{
-  font-size: 10px;
-  text-align: center;
-}
-
-.product_info {
-  display: grid;
-  padding: 0 20px;
-  width: 100%;
-}
-
-.price {
-  display: flex;
-  font-weight: bold;
-}
-
-.product_img {
-  width: 120px;
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgb(246,246,246);
-}
-
-.product_title {
-  font-family: "PT Sans", "Helvetica", "Arial", sans-serif;
-  font-size: 18px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.product_characteristic {
-  color: #666;
-  font-size: 15px;
-  display: flex;
-  align-items: center;
-  overflow-x: scroll;
-  overflow: hidden;
-}
-
-.product_characteristic_item {
-  margin-right: 10px;
-  padding: 0 10px;
-  border: 1.2px dashed #ffe373;
-  /* border-radius: 7px; */
-  background-color: rgb(255, 249, 195);
-  /* cursor: none; */
-  white-space: nowrap;
-  font-size: 14px;
-}
-
-.catalog_item {
-  display: flex;
-}
-
-.product_info_inner {
-  display: flex;
-  justify-content: space-between;
-}
-
-.balance {
-  display: flex;
-  align-items: center;
-  color: #666;
-  /* border-radius: 7px; */
-}
-
-
-.buy_btn {
-  transition-duration: 0.3s;
-  border: 1px solid #d9d9d9;
-  /* border-radius: 7px; */
-  padding: 0 20px;
-  outline: none;
-  background-color: #fff;
-}
-
-.catalog_item:hover .buy_btn {
-  background-color: #fc0;
-}
-
-.title {
-  cursor: pointer;
-  transition-duration: 0.5s;
-}
-
-.title:hover {
-  color: rgb(155, 101, 1) !important;
-}
-
-.buy_btn:hover {
-  background-color: #ffe373 !important;
-}
-
-@media (max-width: 990px) {
-  .product_characteristic {
-    font-size: 12px;
-  }
-
-  .product_info_inner {
-    padding-top: 10px;
-  }
-}
-</style>
+<style scoped></style>
