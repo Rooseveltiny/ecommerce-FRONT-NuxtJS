@@ -122,11 +122,11 @@ export default {
                 sortingTypes: [
                     {
                         name: 'по возрастанию цены',
-                        sort_field: 'price'
+                        sort_field: 'price__value'
                     },
                     {
                         name: "по убыванию цены",
-                        sort_field: '-price'
+                        sort_field: '-price__value'
                     },
                     {
                         name: "по наименованию",

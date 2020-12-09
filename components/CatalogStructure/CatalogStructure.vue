@@ -70,10 +70,10 @@
           </template>
         </div>
       </div>
-      <div class="category_picture">
-        <!-- <div class="cat_image"> -->
+      <div class="category_picture" >
+        <div class="cat_image" :style="{'background-image': `url(${getCurrentCategory.cat_pic})`}">
           <!-- <img width="90%" :src="getCurrentCategory.cat_pic" alt="" /> -->
-        <!-- </div> -->
+        </div>
       </div>
     </div>
         
@@ -265,7 +265,12 @@ export default {
 .cat_image {
   display: flex;
   align-items: center;
-  height: 100%;
+  height: 50%;
+  width: 100%;
+  margin-right: 25px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100%;
 }
 
 /* making catalog structure for mobiles */
