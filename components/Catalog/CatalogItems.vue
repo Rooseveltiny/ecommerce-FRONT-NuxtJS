@@ -5,9 +5,12 @@
         :key="index"
         class="catalog_item main_block_style main_block_style-less"
       >
-        <div class="product_img">
-          <template v-if="product.files.images">
-            <div class="img_wrapper" :style="{'background-image': `url(${product.files.images[0].cloud_link}`}"></div>
+        <div class="product_img non-select">
+          <template v-if="product.files.images.length">
+            <div class="img_wrapper" :style="{'background-image': `url(${product.files.images[0].cloud_link})`}"></div>
+          </template>
+          <template v-else>
+            <div class="no_image">Нет изображения</div>
           </template>
         </div>
         <div class="product_info">
@@ -33,7 +36,7 @@
               <div class="balance_style">
                 <div class="product_balance">{{ product.balance }}</div>
               </div>
-              <!-- <hint-component :hintContent="balanceHint" iconWidthHeight="15px"/> -->
+              <hint-component :hintContent="balanceHint" iconWidthHeight="15px"/>
             </div>
             <addToCartBtn :productLink="product.link" />
           </div>
@@ -72,9 +75,15 @@ export default {
 </script>
 
 <style scoped>
+
+.no_image{
+  font-size: 10px;
+  text-align: center;
+}
+
 .product_info {
   display: grid;
-  padding: 0 35px;
+  padding: 0 20px;
   width: 100%;
 }
 
@@ -88,6 +97,8 @@ export default {
   height: 100px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  background-color: rgb(246,246,246);
 }
 
 .product_title {

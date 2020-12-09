@@ -1,7 +1,6 @@
 <template>
-  <div class="catalog_main">
-    <H1 class="seo_display">Металлическая кровля по минимальным ценам в городе Череповец</H1>
     <div class="container">
+    <H1 class="seo_display">Металлическая кровля по минимальным ценам в городе Череповец</H1>
       <div class="catalog_inner">
         <!-- <div class="navigation main_block_style main_block_style-less" style="margin-bottom: 0"> -->
         <!-- <NavigationChain /> -->
@@ -44,7 +43,6 @@
           </div>
         </div>
       </div>
-    </div>
   </div>
 </template>
 
@@ -52,7 +50,7 @@
 import CatalogItems from "@/components/Catalog/CatalogItems";
 import CatalogPagination from "@/components/Catalog/CatalogPagination";
 import CatalogSorting from "@/components/Catalog/CatalogSorting";
-import CatalogFilter from "@/components/Catalog/CatalogFilter";
+import CatalogFilter from "@/components/Catalog/CatalogFilter/CatalogFilter";
 // import NavigationChain from "@/components/Generals/NavigationChain";
 
 import { mapGetters } from "vuex";
@@ -107,10 +105,6 @@ export default {
 .pagination {
   margin: 0 auto;
   padding: 10px 15px;
-}
-
-.catalog_main {
-  padding-bottom: 50px;
 }
 
 .loading_block {

@@ -1,9 +1,10 @@
 <template>
   <transition name="component-fade" mode="out-in">
+    <div class="container">
     <div
       v-if="getCatalogStructureVision"
       id="MainCatalogStructure"
-      class="main_catalog_structure global_shadow main_block_style main_block_style-less"
+      class="container main_catalog_structure global_shadow main_block_style main_block_style-less"
     >
       <div
         id="CatalogCategories"
@@ -26,7 +27,7 @@
             :class="{ active: cat == getCurrentCategory }"
           >
             <div class="catalog_category_icon">
-              <img :src="cat.icon" width="25px" alt />
+              <img :src="cat.icon" width="20px" alt />
             </div>
             <div class="catalog_category_title">{{ cat.title }}</div>
           </div>
@@ -70,10 +71,12 @@
         </div>
       </div>
       <div class="category_picture">
-        <div class="cat_image">
-          <img width="90%" :src="getCurrentCategory.cat_pic" alt="" />
-        </div>
+        <!-- <div class="cat_image"> -->
+          <!-- <img width="90%" :src="getCurrentCategory.cat_pic" alt="" /> -->
+        <!-- </div> -->
       </div>
+    </div>
+        
     </div>
   </transition>
 </template>
@@ -130,6 +133,11 @@ export default {
 </script>
 
 <style scoped>
+
+.container{
+  position: absolute;
+}
+
 /* CATEGORIES */
 
 .close_catalog {
@@ -198,6 +206,7 @@ export default {
 
 .catalog_sub_category {
   width: 50%;
+  padding-top: 20px;
 }
 
 .catalog_sub_category_title {
@@ -229,7 +238,7 @@ export default {
   font-weight: 600;
   font-size: 19px;
   color: #666;
-  padding-bottom: 20px;
+  /* padding-bottom: 20px; */
 }
 
 .catalog_sub_category_title {
@@ -256,6 +265,7 @@ export default {
 .cat_image {
   display: flex;
   align-items: center;
+  height: 100%;
 }
 
 /* making catalog structure for mobiles */

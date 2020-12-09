@@ -1,26 +1,14 @@
 <template>
   <div class="product">
-    <div class="product_image" style="width: 300px; height: 300px">
-      <template>
-        <Hooper animation="normal" :infiniteScroll="true" :wheelControl="false">
-          <Slide v-for="(img, index) in product.all_images" :key="index">
-            <img width="300" height="300" :src="img.cloud_link" alt />
-          </Slide>
-          <HooperNavigation slot="hooper-addons"></HooperNavigation>
-          <Hooper-pagination slot="hooper-addons"></Hooper-pagination>
-        </Hooper>
-      </template>
-    </div>
+    <ProductImages :images="product.files.images" />
     <div class="product_info">
       <div class="product_info_inner">
         <div class="product_price">
-          {{ product.price }} ₽/{{ product.unit_of_measurement }}
+          {{ product.price }}
         </div>
         <div class="characteristic"></div>
         <div class="balance">
-          Остаток на складе: {{ product.balance }}&nbsp;{{
-            product.unit_of_measurement
-          }}
+          {{ product.balance }}
           <hint-component
             hintContent="Столько товара сейчас лежит на складе)"
             marginLeft="10px"
@@ -37,19 +25,15 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import {
-  Hooper,
-  Slide,
-  Pagination as HooperPagination,
-  Navigation as HooperNavigation,
-} from "hooper";
-import "hooper/dist/hooper.css";
+import ProductImages from "./ProductImages.vue";
 
 export default {
-  components: { Hooper, Slide, HooperPagination, HooperNavigation },
+  components: { ProductImages },
   methods: {},
   computed: {
-    ...mapGetters({ product: "product/product" }),
+    ...mapGetters({
+      product: "product/product",
+    }),
   },
   async fetch() {},
   watch: {},
@@ -57,8 +41,6 @@ export default {
 </script>
 
 <style scoped>
-
-
 .product {
   display: flex;
 }
@@ -97,4 +79,5 @@ export default {
 .buy_btn:hover {
   background-color: #ffe373;
 }
+
 </style>

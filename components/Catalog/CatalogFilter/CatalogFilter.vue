@@ -3,6 +3,8 @@
     <div class="filter_inner non-select">
       <div class="filter_title">Поиск по свойствам</div>
 
+
+
       <div
         v-for="filter in getAllFilters"
         :key="filter.name"
@@ -26,6 +28,8 @@
           </div>
         </div>
       </div>
+
+
       <div class="filter_buttons">
         <transition name="bounce">
           <div

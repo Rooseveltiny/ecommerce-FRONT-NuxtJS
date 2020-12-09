@@ -1,5 +1,4 @@
 <template>
-  <div>
     <div class="container">
       <div class="main_title">Частые вопросы</div>
       <div class="faq_main">
@@ -24,7 +23,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>

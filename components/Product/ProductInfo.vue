@@ -22,12 +22,12 @@
       <div class="section_inner" v-if="currentSection === 'Характеристики'">
         <div class="chars_block">
           <div
-            v-for="(char, index) in product.detail"
+            v-for="(char, index) in product.details"
             :key="index"
             class="char_item"
           >
             <div class="char_name">
-              {{ char.detail_group.title }}
+              {{ char.group }}
               <span class="dots"></span>
             </div>
             <div class="char_value">{{ char.title }}</div>
@@ -35,10 +35,10 @@
         </div>
       </div>
       <div class="section_inner" v-if="currentSection === 'Файлы'">
-        <template v-if="product.all_files.length">
+        <template v-if="product.files.files.length">
           <div class="files_title">Файлы номенклатуры:</div>
         <div
-          v-for="(file, index) in product.all_files"
+          v-for="(file, index) in product.files.files"
           :key="index"
           class="file_item"
         >

@@ -1,5 +1,4 @@
 <template>
-  <div class="contacts_main">
     <div class="container">
       <div class="contacts_inner">
         <div class="main_title">Контакты</div>
@@ -52,7 +51,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>

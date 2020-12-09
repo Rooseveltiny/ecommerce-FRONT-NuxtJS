@@ -1,10 +1,7 @@
 <template>
-  <div class="extra_container">
-    <H1 class="seo_display">{{ getH1 }}</H1>
-    <div @click="$router.go(-1)" class="get_back_block">
-      <div class="get_back_block_inner">назад</div>
-    </div>
     <div class="container">
+    <H1 class="seo_display">{{ getH1 }}</H1>
+    <template v-if="!isLoading">
       <div class="title_main">
         <div>
           <div class="title">{{ product.title }}</div>
@@ -25,9 +22,18 @@
       <div class="product_info">
         <ProductInfo />
       </div>
-    </div>
-    <div class="right_side_block"></div>
-  </div>
+    </template>
+    <template v-else>
+      <div class="loading">
+                    <img
+                      width="100px"
+                      height="100px"
+                      :src="require('@/assets/logo/loadingBlock.gif')"
+                      alt
+                    />
+                  </div>
+    </template>
+    </div>    
 </template>
 
 <script>
@@ -53,7 +59,9 @@ export default {
   },
   computed: {
     getH1() {return `${this.product.title} ${this.product.details_in_row}`},
-    ...mapGetters({ product: "product/product" }),
+    ...mapGetters({ product: "product/product",
+    isLoading: "product/loadingStatus"            
+    }),
   },
   methods: {
     ...mapActions({ fetchProduct: "product/fetchProduct" }),
@@ -77,6 +85,13 @@ export default {
   padding: 15px 0 0 15px;
 }
 
+.loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30rem;
+}
+
 .get_back {
   display: flex;
   justify-content: center;
@@ -89,11 +104,9 @@ export default {
   transition-duration: 0.5s;
   width: 50px;
 }
-
 .get_back:hover {
   background-color: #ffe373;
 }
-
 .get_back::after,
 .get_back::before {
   position: absolute;
@@ -102,21 +115,17 @@ export default {
   width: 2px;
   height: 25px;
 }
-
 .get_back::before {
   transform: rotate(45deg);
 }
-
 .get_back::after {
   transform: rotate(-45deg);
 }
-
 .get_back:hover .get_back_label {
   opacity: 1;
   visibility: visible;
   transform: translateX(35px);
 }
-
 .get_back_label {
   position: absolute;
   visibility: hidden;
@@ -128,7 +137,6 @@ export default {
   padding: 5px 10px;
   transition-duration: 1s;
 }
-
 .get_back_label::after {
   display: block;
   content: "";
@@ -141,4 +149,6 @@ export default {
   transform: rotate(45deg);
   box-shadow: 2px -2px 5px 0px rgba(0, 0, 0, 0.07);
 }
+
+
 </style>

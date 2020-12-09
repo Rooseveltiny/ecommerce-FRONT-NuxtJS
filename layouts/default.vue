@@ -6,14 +6,14 @@
     >
     <Header />
     <div class="content">
-      <div class="container">
         <client-only>
-        <CatalogStructure />
+          <CatalogStructure />
         </client-only>
-      </div>
-      <transition name="component-fade" mode="out-in">
-        <Nuxt />
-      </transition>
+        <GetBackComponent type="left" />
+        <transition name="component-fade" mode="out-in">
+          <Nuxt />
+        </transition>
+        <GetBackComponent type="right" />
     </div>
     <div class="footer">
       <Footer />
@@ -28,13 +28,14 @@
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import CatalogStructure from "../components/CatalogStructure/CatalogStructure";
+import GetBackComponent from "@/components/Generals/GetBackComponent";
 import { mapActions, mapMutations } from "vuex";
 
 export default {
   name: "App",
   computed: {},
   methods: {
-    ...mapActions({setToken: 'user/setToken'})
+    ...mapActions({ setToken: "user/setToken" }),
   },
   async mounted() {
     await this.setToken();
@@ -44,11 +45,8 @@ export default {
 
 
 <style>
-
-
 /* GENERAL INPUT */
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-@import url('@/general_styles/generals.css');
-
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("@/general_styles/generals.css");
 </style>
