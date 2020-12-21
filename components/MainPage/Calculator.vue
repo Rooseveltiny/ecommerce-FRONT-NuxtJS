@@ -4,7 +4,7 @@
       <div class="calculator">
           <div class="calculator_inner">
             <div class="calculator_picture"></div>
-          <div class="calculator_description">Рассчитайте нужное каличество евроштакетника
+          <div class="calculator_description">Рассчитайте нужное количество евроштакетника
              <a class="calc_btn" href="https://calc.uzab.ru" target="_blank"><span class="calc_btn_color">Перейти</span></a>
           </div>
           </div>

@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+  <div class="container">
     <H1 class="seo_display">{{ getH1 }}</H1>
     <template v-if="!isLoading">
       <div class="title_main">
@@ -25,15 +25,15 @@
     </template>
     <template v-else>
       <div class="loading">
-                    <img
-                      width="100px"
-                      height="100px"
-                      :src="require('@/assets/logo/loadingBlock.gif')"
-                      alt
-                    />
-                  </div>
+        <img
+          width="100px"
+          height="100px"
+          :src="require('@/assets/logo/loadingBlock.gif')"
+          alt
+        />
+      </div>
     </template>
-    </div>    
+  </div>
 </template>
 
 <script>
@@ -58,9 +58,12 @@ export default {
     };
   },
   computed: {
-    getH1() {return `${this.product.title} ${this.product.details_in_row}`},
-    ...mapGetters({ product: "product/product",
-    isLoading: "product/loadingStatus"            
+    getH1() {
+      return `${this.product.title} ${this.product.details_in_row}`;
+    },
+    ...mapGetters({
+      product: "product/product",
+      isLoading: "product/loadingStatus",
     }),
   },
   methods: {
@@ -85,11 +88,11 @@ export default {
   padding: 15px 0 0 15px;
 }
 
-.loading{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 30rem;
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30rem;
 }
 
 .get_back {
@@ -149,6 +152,4 @@ export default {
   transform: rotate(45deg);
   box-shadow: 2px -2px 5px 0px rgba(0, 0, 0, 0.07);
 }
-
-
 </style>

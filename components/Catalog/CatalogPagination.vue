@@ -53,11 +53,8 @@ export default {
 
 .pag_item {
   padding: 5px 15px;
-  /* border: 0.2px solid rgb(219, 219, 219); */
   margin: 0 7px;
   font-size: 17px;
-  /* color: #666; */
-  /* border-radius: 5px; */
   transition-duration: 0.4s;
   cursor: pointer;
 }

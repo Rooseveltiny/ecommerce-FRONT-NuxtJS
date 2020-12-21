@@ -28,7 +28,7 @@ export default {
 
 .price{
     font-size: 18px;
-    font-weight: bold;
+    font-weight: 800;
     color: black;
 }
 

@@ -42,7 +42,7 @@ export default {
   width: 300px;
   height: 300px;
   background-image: url("https://im0-tub-ru.yandex.net/i?id=f24e4243859fc56df6544308c72b3dcb&n=13&exp=1");
-  background-size: cover;
+  background-size: 100%;
   background-repeat: no-repeat;
   background-position: center center;
 }

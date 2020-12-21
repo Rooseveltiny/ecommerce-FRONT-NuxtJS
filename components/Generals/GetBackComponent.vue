@@ -17,7 +17,7 @@
 export default {
   data(){
       return {
-        allowedComponents: ['catalog-product-uuid']
+        allowedComponents: ['catalog-product-uuid', 'track']
       }
     },
   computed: {

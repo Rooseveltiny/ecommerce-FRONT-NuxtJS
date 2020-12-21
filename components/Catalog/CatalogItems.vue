@@ -8,18 +8,9 @@
 
 <script>
 import { mapActions, mapGetters, mapMutations } from "vuex";
-import addToCartBtn from "@/components/Cart/AddToCartBtn";
 import CatalogItem from "@/components/Catalog/CatalogItem"
 
 export default {
-  components: {
-    addToCartBtn
-  },
-  data() {
-    return {
-      balanceHint: "Сколько товара в данный момент лежит на складе",
-    };
-  },
   methods: {
     ...mapActions({
       fetchProducts: "catalog/fetchProducts",

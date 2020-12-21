@@ -8,8 +8,8 @@
               <nuxt-link to="/about_company">
                 <div class="footer_item">О компании</div>
               </nuxt-link>
-              <nuxt-link to="/catalog/categories">
-                <div class="footer_item">Каталог продукции</div>
+              <nuxt-link to="/track?component=TwoWays">
+                <div class="footer_item">Отслеживание заказов</div>
               </nuxt-link>
             </div>
             <div class="footer_section">

@@ -17,6 +17,9 @@
                 <nuxt-link to="/about_company">
                   <span class="nav_link">О компании</span>
                 </nuxt-link>
+                <nuxt-link to="/track?component=TwoWays">
+                  <strong><span class="nav_link">Отследить заказ</span></strong>
+                </nuxt-link>
               </div>
               <div class="nav-right-part"><UserHeader /></div>
             </div>
@@ -54,7 +57,7 @@
             <client-only>
               <Search />
             </client-only>
-            <nuxt-link to="/cart">
+            <!-- <nuxt-link to="/cart">
               <div
                 class="cart_icon"
                 :class="{
@@ -68,7 +71,7 @@
                   >{{ getCartProducts.length }}</span
                 >
               </div>
-            </nuxt-link>
+            </nuxt-link> -->
           </div>
         </div>
       </div>
@@ -94,7 +97,6 @@ export default {
   computed: {
     ...mapGetters({
       getCatalogStructureVision: "catalog/getCatalogStructureVision",
-      getCartProducts: "cart/getCartProducts",
     }),
   },
 };
