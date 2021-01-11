@@ -31,9 +31,7 @@
           </div>
           <div class="footer--right_col">
             <div class="footer--right_col_inner">
-              <div @click="changeCurrentPage('MainPage')" class="logo">
-                <img height="40px" :src="require('../../assets/logo/logo.svg')" alt />
-              </div>
+              <Logo />
             </div>
           </div>
         </div>
@@ -44,6 +42,7 @@
 
 <script>
 import { mapMutations } from "vuex";
+import Logo from '@/components/Generals/Logo'
 export default {
   methods: {
     ...mapMutations(["changeCurrentPage"])
@@ -88,12 +87,8 @@ export default {
 }
 
 .footer--right_col_inner {
-  display: grid;
+  padding: 10px 20px;
+  background-color: #fff;
 }
 
-.logo {
-  padding: 10px 20px;
-  background: #f7efef;
-  border-radius: 15px;
-}
 </style>

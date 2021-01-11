@@ -49,4 +49,5 @@ export default {
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 @import url("@/general_styles/generals.css");
+@import url("@/general_styles/animations.css");
 </style>

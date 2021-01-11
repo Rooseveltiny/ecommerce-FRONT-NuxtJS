@@ -31,7 +31,7 @@
       <div class="container">
         <div class="bottom_header_inner">
           <div class="bottom_header_left">
-            <nuxt-link to="/">
+            <!-- <nuxt-link to="/">
               <div class="logo">
                 <img
                   height="40px"
@@ -39,7 +39,8 @@
                   alt
                 />
               </div>
-            </nuxt-link>
+            </nuxt-link> -->
+            <Logo />
             <transition name="bounce">
               <div class="catalog" id="CatalogSctructureBtnMain">
                 <div
@@ -83,6 +84,7 @@
 import { mapMutations, mapGetters } from "vuex";
 import Search from "../Generals/Search";
 import UserHeader from "@/components/User/UserHeader";
+import Logo from '@/components/Generals/Logo'
 
 export default {
   methods: {
@@ -143,6 +145,11 @@ export default {
   -moz-box-shadow: 0px 8px 10px -11px rgba(0, 0, 0, 0.25);
   box-shadow: 0px 8px 10px -11px rgba(0, 0, 0, 0.25);
   background-color: #fff;
+
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .bottom_header_inner {
@@ -170,7 +177,6 @@ export default {
   padding: 5px 10px;
   padding-right: 37px;
   font-size: 15px;
-  /* border-radius: 7px; */
   transition-duration: transform 0.5s;
 }
 
@@ -218,11 +224,6 @@ export default {
   background-color: #ffe373;
 }
 
-/* .catalog_inner.active {
-  background-color: #fff;
-  border: 2px solid rgb(252, 102, 102);
-  color: rgb(252, 102, 102);
-} */
 
 .bottom_header_right {
   width: 45%;
@@ -273,10 +274,6 @@ export default {
   background-color: #fc0;
   right: -16px;
   font-size: 10px;
-}
-
-.logo {
-  padding: 15px 0 10px 0;
 }
 
 @media (max-width: 990px) {

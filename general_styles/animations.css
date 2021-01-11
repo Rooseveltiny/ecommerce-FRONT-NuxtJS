@@ -1,0 +1,52 @@
+  /* ANIMATION */
+  
+/* BASE ANIMATION */
+
+  .component-fade-enter-active,
+  .component-fade-leave-active {
+    transition: opacity .2s ease;
+  }
+  .component-fade-enter, .component-fade-leave-to
+  /* .component-fade-leave-active до версии 2.1.8 */ {
+    opacity: 0;
+  }
+  
+  /* LOGO ANIMATION */
+
+  .logo-fade-enter-active,
+  .logo-fade-leave-active {
+    transition: opacity .2s ease;
+  }
+  .logo-fade-enter, .logo-fade-leave-to
+  /* .component-fade-leave-active до версии 2.1.8 */ {
+    opacity: 0;
+  }
+  /* LOGO ON MAIN ANIMATION */
+
+  .logo-on-main-fade-enter-active,
+  .logo-on-main-fade-leave-active {
+    transition: opacity .15s ease;
+  }
+  .logo-on-main-fade-enter, .logo-on-main-fade-leave-to
+  /* .component-fade-leave-active до версии 2.1.8 */ {
+    opacity: 0;
+  }
+
+
+  .bounce-enter-active {
+    animation: bounce-in 0.5s;
+  }
+  .bounce-leave-active {
+    animation: bounce-in 0.5s reverse;
+  }
+  @keyframes bounce-in {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }

@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Search from './Search'
+import Search from './SearchOrder'
 import Result from './Result'
 export default {
     components: {Search, Result}
