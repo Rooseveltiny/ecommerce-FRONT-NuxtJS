@@ -10,7 +10,6 @@
       <div class="categories main_block_style">
         <div class="categories_inner">
           <div v-for="(cat, index) in allCategories" :key="index" class="category_item">
-            <!-- new -->
             <template v-if="cat.is_endpoint">
               <router-link :to="{ name: 'Catalog', params: { slug: cat.slug }}">
                 <div class="category_img">
@@ -43,7 +42,6 @@
 
 <script>
 import ApiSettings from "../../store/ApiSettings";
-import router from "../../router/router";
 
 export default {
   data() {
@@ -56,7 +54,7 @@ export default {
   },
   methods: {
     async fetchCategories() {
-      const categoryAndQueryParams = router.currentRoute.fullPath;
+      const categoryAndQueryParams = this.$router.currentRoute.fullPath;
       const res = await fetch(
         `${ApiSettings.BASE_ROUTE}${categoryAndQueryParams}`
       );

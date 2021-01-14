@@ -1,13 +1,12 @@
 <template>
   <div
     class="logo"
-    @mouseenter="setComponent('OnMain')"
-    @mouseleave="setComponent('ChanginLogo')"
   >
     <nuxt-link :to="'/'" class="logo_inner">
       <transition name="logo-on-main-fade" mode="out-in">
         <keep-alive>
-          <component :is="currentComponent" />
+          <!-- <component :is="currentComponent" /> -->
+          <ChanginLogo />
         </keep-alive>
       </transition>
     </nuxt-link>
@@ -16,9 +15,9 @@
 
 <script>
 import ChanginLogo from "@/components/Generals/Logo/ChanginLogo";
-import OnMain from "@/components/Generals/Logo/OnMain";
+// import OnMain from "@/components/Generals/Logo/OnMain";
 export default {
-  components: { ChanginLogo, OnMain },
+  components: { ChanginLogo,}, //OnMain },
   data() {
     return {
       currentComponent: "ChanginLogo",

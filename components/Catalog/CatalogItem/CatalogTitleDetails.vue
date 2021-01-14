@@ -72,7 +72,6 @@ export default {
   padding: 3px 7px;
   margin: 0 5px;
   background-color: #ffe373;
-  color: #333;
 }
 .detail:first-child {
   margin-left: 0;

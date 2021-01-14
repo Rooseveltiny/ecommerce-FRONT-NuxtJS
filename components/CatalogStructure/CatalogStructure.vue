@@ -237,8 +237,7 @@ export default {
 .category_title {
   font-weight: 600;
   font-size: 19px;
-  color: #666;
-  /* padding-bottom: 20px; */
+  color: #777;
 }
 
 .catalog_sub_category_title {

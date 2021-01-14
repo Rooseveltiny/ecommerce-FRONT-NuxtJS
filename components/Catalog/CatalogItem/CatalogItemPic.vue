@@ -30,7 +30,6 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(242,242,242);
 }
 
 .image{
