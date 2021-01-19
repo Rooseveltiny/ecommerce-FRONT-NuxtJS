@@ -24,7 +24,7 @@
               <nuxt-link to="/faq">
                 <div class="footer_item">Частные вопросы</div>
               </nuxt-link>
-              <nuxt-link to="/about_project">
+              <nuxt-link :to="'/promo/about_project'">
                 <div class="footer_item">О проекте</div>
               </nuxt-link>
             </div>
