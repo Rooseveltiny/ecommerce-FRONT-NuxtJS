@@ -31,5 +31,11 @@ export default {
 <style scoped>
 .section_class{
   padding: 0 50px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid rgb(220,220,220);
+}
+.section_class:last-child{
+  margin-bottom: 0;
+  border-bottom: none;
 }
 </style>

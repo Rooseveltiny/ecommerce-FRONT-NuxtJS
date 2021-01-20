@@ -36,20 +36,29 @@ export default {
 .service_title {
   font-size: 20px;
   font-weight: bold;
+  border-bottom: 1px dashed rgb(220,220,220);
+  padding-bottom: 7px;
 }
 .service_description {
   font-size: 18px;
+  padding-top: 7px;
 }
 
 .service_item {
-  margin: 10px 0;
+  margin: 50px 0;
 }
 
 .service_icon {
   height: 100px;
   width: 100px;
-  background-color: red;
-  margin: 0 auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  margin: auto;
+  transition-duration: .5s;
+}
+.service_icon:hover {
+  transform: scale(1.05);
 }
 .service_inner {
   display: flex;

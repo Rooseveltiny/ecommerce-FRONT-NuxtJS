@@ -6,14 +6,17 @@
     >
     <Header />
     <div class="content">
-        <client-only>
-          <CatalogStructure />
-        </client-only>
-        <GetBackComponent type="left" />
-        <transition name="component-fade" mode="out-in">
-          <Nuxt />
-        </transition>
-        <GetBackComponent type="right" />
+      <client-only>
+        <CatalogStructure />
+      </client-only>
+      <client-only>
+        <Locations />
+      </client-only>
+      <GetBackComponent type="left" />
+      <transition name="component-fade" mode="out-in">
+        <Nuxt />
+      </transition>
+      <GetBackComponent type="right" />
     </div>
     <div class="footer">
       <Footer />
@@ -27,6 +30,7 @@
 <script>
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
+import Locations from "../components/Location/Locations";
 import CatalogStructure from "../components/CatalogStructure/CatalogStructure";
 import GetBackComponent from "@/components/Generals/GetBackComponent";
 import { mapActions, mapMutations } from "vuex";

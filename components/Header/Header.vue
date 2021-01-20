@@ -6,7 +6,7 @@
           <nav class="nav">
             <div class="nav_inner">
               <div class="nav-left-part">
-                <span class="nav_link">Череповец</span>
+                <Locations />
                 <span class="nav_link">8(8202)265-265</span>
                 <nuxt-link to="/contacts">
                   <span class="nav_link">Контакты</span>
@@ -31,15 +31,6 @@
       <div class="container">
         <div class="bottom_header_inner">
           <div class="bottom_header_left">
-            <!-- <nuxt-link to="/">
-              <div class="logo">
-                <img
-                  height="40px"
-                  :src="require('../../assets/logo/logo.svg')"
-                  alt
-                />
-              </div>
-            </nuxt-link> -->
             <Logo />
             <transition name="bounce">
               <div class="catalog" id="CatalogSctructureBtnMain">
@@ -58,21 +49,7 @@
             <client-only>
               <Search />
             </client-only>
-            <!-- <nuxt-link to="/cart">
-              <div
-                class="cart_icon"
-                :class="{
-                  'cart_icon-empty': !getCartProducts.length,
-                  'cart_icon-full': getCartProducts.length,
-                }"
-              >
-                <span
-                  class="cart_quantity"
-                  :class="{ 'cart_quantity-not_null': getCartProducts.length }"
-                  >{{ getCartProducts.length }}</span
-                >
-              </div>
-            </nuxt-link> -->
+            
           </div>
         </div>
       </div>
@@ -85,8 +62,10 @@ import { mapMutations, mapGetters } from "vuex";
 import Search from "../Generals/Search";
 import UserHeader from "@/components/User/UserHeader";
 import Logo from '@/components/Generals/Logo'
+import Locations from '@/components/Location'
 
 export default {
+  components: { Locations },
   methods: {
     ...mapMutations({
       openCloseCatalogStructureGeneral:
